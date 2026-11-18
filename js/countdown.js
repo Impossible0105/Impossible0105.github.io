@@ -91,7 +91,7 @@
 $(document).ready(function() {
 
 	$("#countdown").countdown({
-			date: "25 december 2022 00:00:00",
+			date: "30 june 2027 00:00:00",
 			format: "on"
 		},
 
