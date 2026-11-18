@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>多模态学习系列-强化学习 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="多模态大模型强化学习强化学习发展脉络强化学习六大核心：Agent、Environment、Policy、Reward、Action、State。 第一代 经典强化学习时代(1950~2015)主要为了解决离散小游戏、格子问题 常见的有Q学习，深度Q网络 第二代 策略优化时代(2015~2018)A2C&#x2F;A3C：分布式策略梯度  Advantage Actor Critic 策略网络Act">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多模态学习系列-强化学习">
+<meta property="og:url" content="http://example.com/2026/08/04/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="多模态大模型强化学习强化学习发展脉络强化学习六大核心：Agent、Environment、Policy、Reward、Action、State。 第一代 经典强化学习时代(1950~2015)主要为了解决离散小游戏、格子问题 常见的有Q学习，深度Q网络 第二代 策略优化时代(2015~2018)A2C&#x2F;A3C：分布式策略梯度  Advantage Actor Critic 策略网络Act">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-04T03:14:05.000Z">
+<meta property="article:modified_time" content="2026-08-04T09:42:45.962Z">
+<meta property="article:author" content="Jiajun Xiang">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiangjiajun</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">fake it until you make it</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Impossible0105" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:xiangjiajun24@nudt.edu.cn" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">大家好～我是 xiangjiajun，是一名爱好健身、阅读、骑行、数码、各种小球的折腾型选手，
+分享我的学习、折腾和日常，有志同道合的朋友可以一起互相交流，共同成长。
+
+---
+
+- GitHub: [https://github.com/Impossible0105](https://github.com/Impossible0105)
+- 邮箱: xiangjiajun24@nudt.edu.cn
+</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiangjiajun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiangjiajun</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">fake it until you make it</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Impossible0105" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiangjiajun24@nudt.edu.cn" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-多模态学习系列-强化学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2026/08/04/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
+  	<time datetime="2026-08-04T03:14:05.000Z" itemprop="datePublished">2026-08-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多模态学习系列-强化学习
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多模态大模型强化学习"><a href="#多模态大模型强化学习" class="headerlink" title="多模态大模型强化学习"></a>多模态大模型强化学习</h1><h2 id="强化学习发展脉络"><a href="#强化学习发展脉络" class="headerlink" title="强化学习发展脉络"></a>强化学习发展脉络</h2><p>强化学习六大核心：Agent、Environment、Policy、Reward、Action、State。</p>
+<h3 id="第一代-经典强化学习时代-1950-2015"><a href="#第一代-经典强化学习时代-1950-2015" class="headerlink" title="第一代 经典强化学习时代(1950~2015)"></a>第一代 经典强化学习时代(1950~2015)</h3><p>主要为了解决离散小游戏、格子问题</p>
+<p>常见的有Q学习，深度Q网络</p>
+<h3 id="第二代-策略优化时代-2015-2018"><a href="#第二代-策略优化时代-2015-2018" class="headerlink" title="第二代 策略优化时代(2015~2018)"></a>第二代 策略优化时代(2015~2018)</h3><p>A2C&#x2F;A3C：分布式策略梯度</p>
+<blockquote>
+<p>Advantage Actor Critic</p>
+<p>策略网络Actor：P(a|s)，生成动作(在当前状态下哪一个动作的条件概率最大就用哪一个动作)</p>
+<p>价值网络Critic：V(s)，评估当前状态的价值</p>
+<p>优势函数A&#x3D;G-V(s)替代原始回报做梯度，降低了方差，训练收敛速度更快(方差和梯度更新方向)</p>
+<p>缺点：没有任何约束去限制更新的幅度，策略更新震荡效应可能明显(更新幅度大小)</p>
+</blockquote>
+<p>TRPO：解决策略更新震荡问题，但计算复杂</p>
+<blockquote>
+<p>增加了硬性约束，新旧策略之间KL散度不能超过$\delta$     $\mathbb{E}<em>{s\sim\pi</em>{old}}[D_{KL}(\pi_{old}(a|s)||\pi_{new}(a|s))] \le \delta$</p>
+<ul>
+<li><p>解决了A2C无约束带来的策略更新震荡问题</p>
+</li>
+<li><p>运行带约束的优化需要计算海森矩阵，计算量巨大</p>
+</li>
+</ul>
+</blockquote>
+<p>PPO：用裁剪Clip替代TRPO的复杂约束</p>
+<blockquote>
+<p>利用裁剪或者自适应KL散度来替代硬约束</p>
+<ol>
+<li>clip型ppo：更新比例&#x3D;此次动作&#x2F;上次动作，约束更新比例在[1-$\epsilon$,1+$\epsilon$]</li>
+<li>自适应KL散度：</li>
+</ol>
+</blockquote>
+<p>SAC：加入最大熵，专门面向连续动作</p>
+<blockquote>
+<p>优化目标&#x3D;最大化累积奖励+策略熵正则项</p>
+<p>最大化策略熵能够智能体尽可能地多探索其他动作(跟深度学习里面的moment有一点点像，但是有本质区别)</p>
+</blockquote>
+<h3 id="第三代-大模型对齐RLHF时代-2018-2023"><a href="#第三代-大模型对齐RLHF时代-2018-2023" class="headerlink" title="第三代 大模型对齐RLHF时代(2018~2023)"></a>第三代 大模型对齐RLHF时代(2018~2023)</h3><p>SFT监督微调——&gt;训练奖励模型——&gt;PPO微调优化</p>
+<p>离线方案：</p>
+<ol>
+<li><p>DPO：直接用偏好数据优化策略，抛弃奖励模型</p>
+</li>
+<li><p>ORPO：将指令监督微调与直接偏好优化合并到一起</p>
+</li>
+<li><p>KTO：适用于正负样本不均衡。适用于安全对齐，主要是输出安全合规和有害违规</p>
+</li>
+</ol>
+<h3 id="第四代-GRPO时代"><a href="#第四代-GRPO时代" class="headerlink" title="第四代 GRPO时代"></a>第四代 GRPO时代</h3><p>抛弃奖励模型，用基于可验证的奖励来微调策略优化，采用组内相对优势来进行优化：利用它每次采样多个回答，计算组内多个回答的相对优势，用相对优势去更新梯度。</p>
+<ol>
+<li>前提奖励可被验证，不适用于开放式问题</li>
+<li>模型仅限于生成长回答，需要加入长度约束。</li>
+</ol>
+<h2 id="多模态大模型"><a href="#多模态大模型" class="headerlink" title="多模态大模型"></a>多模态大模型</h2><h3 id="PPO-RLHF-2017-2022"><a href="#PPO-RLHF-2017-2022" class="headerlink" title="PPO+RLHF(2017-2022)"></a>PPO+RLHF(2017-2022)</h3><h3 id="离线偏好对齐-2022-2024"><a href="#离线偏好对齐-2022-2024" class="headerlink" title="离线偏好对齐(2022-2024)"></a>离线偏好对齐(2022-2024)</h3><h3 id="GRPO-RLVR范式-2024至今"><a href="#GRPO-RLVR范式-2024至今" class="headerlink" title="GRPO+RLVR范式(2024至今)"></a>GRPO+RLVR范式(2024至今)</h3><h2 id="多模态大模型从零到上线部署"><a href="#多模态大模型从零到上线部署" class="headerlink" title="多模态大模型从零到上线部署"></a>多模态大模型从零到上线部署</h2><h3 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a>预训练</h3><ul>
+<li>对比学习：爬取互联网上海量的图像文本对，对图文对进行数据清洗去重，去除低质、有害、有水印等内容形成高质量图像文本对，利用高质量图像文本对进行对比学习，让模型能够将图像与文本拉入同一空间。模型能够看懂空间，此阶段模型只具有表征能力，没有生成能力。</li>
+<li>自回归学习：将图像embedding接到语言文本 embedding 中，输入自回归语言模型；LMM 中输入自回归语言模型；LLM 中进行后续自回归学习，Predict next token</li>
+</ul>
+<h3 id="指令微调"><a href="#指令微调" class="headerlink" title="指令微调"></a>指令微调</h3><p>照图像加文本和标准回答的监督训练数据集，利用监督损失 MLE 进行指定微调(大模型按照指定格式输出)</p>
+<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><p>利用RLVR可验证奖励规则，并行 roll out n 条样本形成一个 group，在一个 group 中计算相对优势，利用相对优势进行策略梯度优化，增强模型的推理能力</p>
+<h3 id="偏好对齐与安全对齐"><a href="#偏好对齐与安全对齐" class="headerlink" title="偏好对齐与安全对齐"></a>偏好对齐与安全对齐</h3><p>DPO进行人类偏好对齐：构造”问题-choose回答-reject回答”，提升优质回答相对劣质回答的对数概率，同时加入KL散度约束防止跑偏。</p>
+<p>KTO进行安全对齐：针对每一条样本进行二分类：安全回归或有害违规。适配安全对齐场景</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/07/31/Hexo-GitHub-%E5%85%8D%E8%B4%B9%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo+GitHub 免费个人博客搭建完整指南</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="多模态学习系列-强化学习" data-title="多模态学习系列-强化学习" data-url="http://example.com/2026/08/04/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"  data-images="/img/avatar.jpg" data-content="多模态学习系列-强化学习">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2026 Jiajun Xiang
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
