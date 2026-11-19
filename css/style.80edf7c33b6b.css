@@ -2011,23 +2011,23 @@ a.footer-filing__item:focus-visible { outline: 2px solid var(--accent); outline-
 /* Researcher Theme — Card & Color Overrides                                    */
 /* ========================================================================== */
 
+/* Default palette when no data-theme is set — a professional blue derived
+   from the original researcher accent, kept only as a fallback.          */
 :root {
-  /* Replace Morii's default indigo with researcher's professional blue */
   --brand-color: #4e6ef5;
-  --brand-color-dark: #7b93f7;
+  --brand-color-dark: #6d8af7;
   --accent: var(--brand-color);
   --accent-soft: #eef2ff;
-  /* Layered soft shadows matching researcher's OKLCH approach */
-  --shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 4px 10px -2px oklch(0 0 0 / 0.05);
-  --shadow-lg: 0 2px 4px oklch(0 0 0 / 0.05), 0 14px 30px -10px oklch(0 0 0 / 0.12);
+  --shadow: 0 1px 2px oklch(0 0 0 / .05), 0 6px 16px -4px oklch(0 0 0 / .07);
+  --shadow-lg: 0 2px 4px oklch(0 0 0 / .05), 0 14px 30px -10px oklch(0 0 0 / .12);
 }
 html[data-theme="dark"] {
   --brand-color: #6d8af7;
-  --brand-color-dark: #8da4fb;
+  --brand-color-dark: #8fa4fb;
   --accent: var(--brand-color);
   --accent-soft: #1e2a4a;
-  --shadow: 0 1px 2px oklch(0 0 0 / 0.1), 0 4px 10px -2px oklch(0 0 0 / 0.15);
-  --shadow-lg: 0 2px 4px oklch(0 0 0 / 0.12), 0 14px 30px -10px oklch(0 0 0 / 0.25);
+  --shadow: 0 1px 2px oklch(100% 0 0 / .06), 0 8px 20px -6px oklch(0 0 0 / .55);
+  --shadow-lg: 0 2px 4px oklch(100% 0 0 / .06), 0 14px 32px -12px oklch(0 0 0 / .40);
 }
 
 /* ---------- Post Cards — refined card style from researcher theme ---------- */
@@ -2065,11 +2065,22 @@ html[data-theme="dark"] {
   font-weight: 700 !important;
 }
 
-/* hero section — adopt researcher's calm blue wash instead of purple gradient */
+/* hero section — tinted with current --brand-color, responds to every palette */
 .hero__main {
-  background: linear-gradient(135deg, #4e6ef5 0%, #6b83f0 50%, #8fa4f7 100%) !important;
-  box-shadow: 0 20px 42px rgba(78,110,245,.18) !important;
+  background: linear-gradient(135deg,
+      color-mix(in oklab, var(--brand-color, #4e6ef5) 88%, #fff) 0%,
+      color-mix(in oklab, var(--brand-color, #4e6ef5) 65%, #fff) 50%,
+      color-mix(in oklab, var(--brand-color, #4e6ef5) 35%, #fff) 100%) !important;
+  box-shadow: 0 20px 42px color-mix(in oklab, var(--brand-color, #4e6ef5) 28%, transparent) !important;
   border-radius: 20px !important;
+  /* white text stays readable against any pastel brand tint                */
+  color: color-mix(in oklab, #fff 92%, var(--ink, #182238)) !important;
+}
+/* Ensure hero decorations adapt when switching palettes                   */
+.hero__main:before,
+.hero__main:after {
+  border-color: color-mix(in oklab, #fff 18%, transparent) !important;
+  background: color-mix(in oklab, #fff 4.5%, transparent) !important;
 }
 
 /* navigation active item glow */
@@ -2079,8 +2090,8 @@ html[data-theme="dark"] {
 /* button accent */
 .button--primary {
   background: #fff !important;
-  color: #3b4bd1 !important;
-  box-shadow: 0 8px 18px rgba(78,110,245,.18) !important;
+  color: var(--brand-color, #4e6ef5) !important;
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--brand-color, #4e6ef5) 28%, transparent) !important;
 }
 .button--primary:hover {
   background: color-mix(in oklab, #fff 94%, var(--brand-color, #4e6ef5) 6%) !important;
@@ -2096,10 +2107,120 @@ html[data-theme="dark"] {
 
 /* profile-card avatar ring tinted with accent */
 .profile-card__cover {
-  background: color-mix(in oklab, var(--brand-color, #4e6ef5) 12%, transparent) !important;
+  background: color-mix(in oklab, var(--brand-color, #4e6ef5) 10%, transparent) !important;
 }
 
 /* tag / badge soft fills */
 .rc-tag, .post-card__meta time, .post-card__category {
   color: color-mix(in oklab, var(--brand-color, #4e6ef5) 75%, transparent) !important;
+}
+
+/* ========================================================================== */
+/* Theme Picker Menu — DaisyUI-style dropdown                                   */
+/* ========================================================================== */
+
+/* Reset fa-icon styles (we use a plain chevron, but keep backward compat)       */
+.fas { font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+.rc-themepicker-caret::before { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+
+.rc-themepicker { position: relative; display: inline-flex; }
+.rc-themepicker-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  height: 2.35rem; padding: 0 .7rem;
+  border-radius: var(--radius, 12px);
+  border: 1px solid color-mix(in oklab, var(--line, #e7ebf3) 70%, transparent);
+  background: color-mix(in oklab, var(--surface, #fff) 92%, var(--bg, #f6f8fc));
+  font-size: .82rem; font-weight: 600;
+  color: var(--ink, #182238);
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+.rc-themepicker-btn:hover {
+  border-color: color-mix(in oklab, var(--brand-color, #4e6ef5) 40%, var(--line, #e7ebf3));
+}
+.rc-themepicker-swatch {
+  flex: none; width: .65rem; height: .65rem;
+  border-radius: 50%; background: var(--brand-color, #4e6ef5);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-color, #4e6ef5) 18%, transparent);
+  transition: background .25s ease;
+}
+.rc-themepicker-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 8rem; }
+.rc-themepicker-caret {
+  flex: none; font-size: .58rem; opacity: .5;
+  transition: transform .25s ease;
+}
+.rc-themepicker.is-open .rc-themepicker-caret { transform: rotate(180deg); }
+
+.rc-themepicker-menu {
+  position: absolute; top: calc(100% + .5rem); right: 0; z-index: 80;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .15rem;
+  width: 17rem; max-height: 19rem;
+  overflow-y: auto; padding: .45rem;
+  border-radius: var(--radius-lg, 14px);
+  border: 1px solid color-mix(in oklab, var(--line, #e7ebf3) 75%, transparent);
+  background: color-mix(in oklab, var(--surface, #fff) 94%, var(--bg, #f6f8fc));
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: var(--shadow-lg, 0 12px 36px rgba(35,51,91,.08));
+  animation: mc-picker-in .16s ease;
+}
+@keyframes mc-picker-in {
+  from { opacity: 0; transform: translateY(-4px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+.rc-themepicker-menu[hidden] { display: none; }
+.rc-themepicker-col { display: flex; flex-direction: column; gap: 2px; }
+.rc-themepicker-col-title {
+  font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); padding: .3rem .5rem .1rem;
+}
+.rc-themepicker-item {
+  display: flex; align-items: center; gap: .45rem;
+  min-width: 0; padding: .4rem .5rem; border: 0; border-radius: 8px;
+  background: transparent; font-size: .76rem; font-weight: 500;
+  color: color-mix(in oklab, var(--ink) 72%, transparent);
+  cursor: pointer; text-align: left;
+  transition: background .15s ease, color .15s ease;
+}
+.rc-themepicker-item:hover { background: color-mix(in oklab, var(--brand-color, #4e6ef5) 10%, transparent); color: var(--ink); }
+.rc-themepicker-item.is-active {
+  background: color-mix(in oklab, var(--brand-color, #4e6ef5) 14%, transparent);
+  color: var(--brand-color, #4e6ef5); font-weight: 700;
+}
+.rc-themepicker-item-icon { flex: none; font-size: .88rem; line-height: 1; }
+.rc-themepicker-item-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-themepicker-check {
+  flex: none; margin-left: auto; font-size: .6rem; opacity: 0;
+  color: var(--brand-color, #4e6ef5);
+}
+.rc-themepicker-item.is-active .rc-themepicker-check { opacity: 1; }
+
+@media (max-width: 480px) {
+  .rc-themepicker-menu { width: min(17rem, calc(100vw - 1.5rem)); max-height: 60vh; }
+}
+
+/* ========================================================================== */
+/* Post cards — pure-white covers (replaces researcher's colored tints)         */
+/* ========================================================================== */
+
+.post-card__media {
+  display: block; aspect-ratio: 1.9; overflow: hidden;
+  background: #ffffff !important;
+}
+.post-card__placeholder {
+  height: 100%; display: grid; place-items: center;
+  font-size: 72px; color: var(--muted, #a7b5ca);
+  background: #ffffff;
+}
+
+/* ========================================================================== */
+/* Hero accent row tweaks (light/dark neutral)                                 */
+/* ========================================================================== */
+.hero-mini--quote {
+  background: var(--surface-2, #2a345e);
+  color: var(--ink, #ecf9ff);
+}
+.hero-mini--stats {
+  background: var(--accent-soft, #d9f4eb);
+  color: var(--ink, #1b6656);
 }
