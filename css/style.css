@@ -1989,3 +1989,101 @@ a.footer-filing__item:focus-visible { outline: 2px solid var(--accent); outline-
   .navigation-card { min-width:0; }
 }
 @media(max-width:380px) { .navigation-grid { grid-template-columns:1fr; } }
+
+/* ==========================================================================
+   Researcher Theme — Card & Color Overrides
+   Applied on top of Morii base styles
+   ========================================================================== */
+
+:root {
+  /* Replace Morii's default indigo with researcher's professional blue */
+  --brand-color: #4e6ef5;
+  --brand-color-dark: #7b93f7;
+  --accent: var(--brand-color);
+  --accent-soft: #eef2ff;
+  /* Layered soft shadows matching researcher's OKLCH approach */
+  --shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 4px 10px -2px oklch(0 0 0 / 0.05);
+  --shadow-lg: 0 2px 4px oklch(0 0 0 / 0.05), 0 14px 30px -10px oklch(0 0 0 / 0.12);
+}
+html[data-theme="dark"] {
+  --brand-color: #6d8af7;
+  --brand-color-dark: #8da4fb;
+  --accent: var(--brand-color);
+  --accent-soft: #1e2a4a;
+  --shadow: 0 1px 2px oklch(0 0 0 / 0.1), 0 4px 10px -2px oklch(0 0 0 / 0.15);
+  --shadow-lg: 0 2px 4px oklch(0 0 0 / 0.12), 0 14px 30px -10px oklch(0 0 0 / 0.25);
+}
+
+/* ---------- Post Cards — refined card style from researcher theme ---------- */
+.post-card, .selected-card, .feature-card {
+  border-radius: 16px !important;
+  border: 1px solid color-mix(in oklab, var(--line, #e7ebf3) 80%, transparent) !important;
+  box-shadow: var(--shadow) !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  overflow: hidden;
+}
+.post-card:hover, .selected-card:hover, .feature-card:hover {
+  transform: translateY(-3px) !important;
+  border-color: color-mix(in oklab, var(--brand-color, #4e6ef5) 40%, var(--line, #e7ebf3)) !important;
+  box-shadow:
+    var(--shadow-lg),
+    0 14px 34px -14px color-mix(in oklab, var(--brand-color, #4e6ef5) 22%, transparent) !important;
+}
+
+/* selected-card specific overrides */
+.selected-card {
+  border-radius: 16px !important;
+  min-height: auto !important;
+}
+.selected-card__body { padding: 20px 22px !important; }
+.selected-card__number { font-size: 11px !important; }
+
+/* post-card body tweaks */
+.post-card__body { padding: 20px 22px 22px !important; }
+.post-card h3 { letter-spacing: -0.02em !important; }
+.post-card p { font-size: 13px !important; line-height: 1.75 !important; }
+.post-card__read {
+  border-top-color: color-mix(in oklab, var(--line, #e7ebf3) 70%, transparent) !important;
+  font-weight: 700 !important;
+}
+
+/* hero section — adopt researcher's calm blue wash instead of purple gradient */
+.hero__main {
+  background: linear-gradient(135deg, #4e6ef5 0%, #6b83f0 50%, #8fa4f7 100%) !important;
+  box-shadow: 0 20px 42px rgba(78,110,245,.18) !important;
+  border-radius: 20px !important;
+}
+
+/* navigation active item glow */
+.site-nav a.site-nav__item--active {
+  box-shadow: 0 2px 9px color-mix(in oklab, var(--brand-color, #4e6ef5) 22%, transparent) !important;
+}
+/* button accent */
+.button--primary {
+  background: #fff !important;
+  color: #3b4bd1 !important;
+  box-shadow: 0 8px 18px rgba(78,110,245,.18) !important;
+}
+.button--primary:hover {
+  background: color-mix(in oklab, #fff 94%, var(--brand-color, #4e6ef5) 6%) !important;
+}
+.button--ghost {
+  border: 1px solid rgba(255,255,255,.35) !important;
+  color: #fff !important;
+  background: rgba(255,255,255,.08) !important;
+}
+.button--ghost:hover {
+  background: rgba(255,255,255,.16) !important;
+}
+
+/* profile-card avatar ring tinted with accent */
+.profile-card__cover {
+  background: color-mix(in oklab, var(--brand-color, #4e6ef5) 12%, transparent) !important;
+}
+
+/* tag / badge soft fills */
+.rc-tag, .post-card__meta time, .post-card__category {
+  color: color-mix(in oklab, var(--brand-color, #4e6ef5) 75%, transparent) !important;
+}
