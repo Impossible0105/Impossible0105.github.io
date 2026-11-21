@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+<!-- Restore the saved theme before first paint to avoid a flash of light mode -->
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch (e) {}
+})();
+</script>
+<!-- Meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>eDesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注</title>
+<meta name="description" content="记录学习、折腾与生活。">
+<meta name="keywords" content="">
+<meta name="author" content="xiangjiajun">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+<!-- Open Graph tags -->
+<meta property="og:title" content="eDesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注">
+<meta property="og:description" content="记录学习、折腾与生活。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://example.com/2026/11/21/eDesktop-%E6%A1%8C%E9%9D%A2%E6%95%B4%E7%90%86%E4%B8%8E%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">
+
+<!-- Twitter Card tags -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eDesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注">
+<meta name="twitter:description" content="记录学习、折腾与生活。">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;540;560;600;620;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<!-- Academicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<!-- Tailwind CSS + Design System -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/design.css">
+
+<!-- Theme Change Script -->
+<script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+
+<!-- Typed -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body class="min-h-screen flex flex-col rc-neu-on">
+
+  <!-- Fluid cloud: slow, heavily blurred colour blobs behind the content -->
+  
+    <div class="rc-cloud" aria-hidden="true">
+      <span class="rc-cloud-blob rc-cloud-a"></span>
+      <span class="rc-cloud-blob rc-cloud-b"></span>
+      <span class="rc-cloud-blob rc-cloud-c"></span>
+    </div>
+  
+
+  <!-- Reading progress line (top edge) + cursor spotlight (decorative) -->
+  <div class="rc-progress" aria-hidden="true"><span id="rc-progress-bar"></span></div>
+  <div class="rc-spotlight" aria-hidden="true"></div>
+
+  <!-- Sidebar for Desktop (own full-height column, left) -->
+  <aside class="rc-sidebar hidden lg:flex fixed left-0 top-0 h-screen w-80 z-40 flex-col overflow-y-auto">
+    <div class="relative h-full">
+      <div class="flex flex-col h-full">
+  <!-- Profile -->
+  <div class="p-6 pb-5">
+    <a href="/" class="flex items-center gap-4 no-underline group">
+      <span class="rc-avatar-ring" style="--rc-av-size: 4.25rem;">
+        <img src="/images/avatar.jpg" alt="Profile" class="rc-avatar" />
+      </span>
+      <span class="min-w-0">
+        <span class="block rc-serif text-lg font-bold text-base-content truncate group-hover:text-[color-mix(in_oklab,var(--rc-accent)_80%,transparent)] transition-colors">xiangjiajun</span>
+        
+          <span class="block text-sm rc-muted truncate">fake it until you make it</span>
+        
+      </span>
+    </a>
+  </div>
+
+  <!-- Menu -->
+  <nav class="px-4 py-3 space-y-0.5 flex-grow overflow-y-auto">
+    
+      
+        <a href="/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="rc-sidebar-text">首页</span>
+        </a>
+      
+        <a href="/archives/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-book-open"></i></span>
+          <span class="rc-sidebar-text">文章</span>
+        </a>
+      
+        <a href="/shuoshuo/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-pen-nib"></i></span>
+          <span class="rc-sidebar-text">个人随想录</span>
+        </a>
+      
+        <a href="/essay/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-lightbulb"></i></span>
+          <span class="rc-sidebar-text">知识库</span>
+        </a>
+      
+        <a href="/album/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-folder-open"></i></span>
+          <span class="rc-sidebar-text">资料库</span>
+        </a>
+      
+        <a href="/about/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-user"></i></span>
+          <span class="rc-sidebar-text">关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <!-- Social -->
+  <div class="p-5 mt-auto border-t" style="border-color: color-mix(in oklab, var(--rc-line) 70%, transparent);">
+    <div class="flex justify-center items-center gap-2">
+      
+      
+      
+      
+        <a href="https://github.com/Impossible0105" class="rc-social" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <i class="fa-brands fa-github text-xl block"></i>
+        </a>
+      
+      
+      
+        <a href="https://space.bilibili.com/Impossible24" class="rc-social" target="_blank" rel="noopener noreferrer" title="哔哩哔哩">
+          <i class="fa-brands fa-bilibili text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.zhihu.com/people/Impossible24" class="rc-social" target="_blank" rel="noopener noreferrer" title="知乎">
+          <i class="fa-solid fa-circle-question text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.douyin.com/user/xiangjiajun24" class="rc-social" target="_blank" rel="noopener noreferrer" title="抖音">
+          <i class="fa-brands fa-tiktok text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.xiaohongshu.com/user/profile/851977928" class="rc-social" target="_blank" rel="noopener noreferrer" title="小红书">
+          <i class="fa-solid fa-book-open text-xl block"></i>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    
+
+  </aside>
+
+  <!-- Drawer for Mobile -->
+  <div class="drawer lg:hidden">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <!-- Mobile navbar -->
+      <div class="rc-nav w-full navbar fixed top-0 left-0 right-0 z-40">
+        <label for="my-drawer" class="rc-nav-icon" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+        <div class="flex-1 flex items-center px-3">
+          <div class="rc-nav-widget">
+  <!-- Live clock (computer time) -->
+  <div class="rc-widget-clock" title="Local time">
+    <span class="rc-widget-time rc-time">--:--</span>
+    <span class="rc-widget-date rc-date">---</span>
+  </div>
+
+  <!-- Weather chip (click to set a city) -->
+  <div class="rc-weather-wrap">
+    <button class="rc-weather" type="button" title="Weather — click to set location">
+      <span class="rc-weather-icon rc-w-icon">🌤</span>
+      <span class="rc-weather-temp rc-w-temp">--°C</span>
+      <span class="rc-weather-city rc-w-city">--</span>
+    </button>
+
+    <div class="rc-widget-pop" hidden>
+      <input class="rc-input rc-city-input" placeholder="City (e.g. Berlin)" />
+      <div class="rc-widget-pop-actions">
+        <button class="rc-btn rc-btn-accent rc-btn-sm rc-city-go" type="button">Set</button>
+        <button class="rc-btn rc-btn-ghost rc-btn-sm rc-city-auto" type="button">Auto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="flex-none">
+          
+
+<div class="rc-themepicker" data-theme-picker>
+  <button type="button" class="rc-themepicker-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change theme">
+    <span class="rc-themepicker-swatch" aria-hidden="true"></span>
+    <span class="rc-themepicker-label" data-theme-label>Theme</span>
+    <i class="fa-solid fa-chevron-down rc-themepicker-caret" aria-hidden="true"></i>
+  </button>
+
+  <div class="rc-themepicker-menu" role="listbox" aria-label="Themes" hidden>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="light"
+              data-theme-name="Light"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌞</span>
+        <span class="rc-themepicker-item-label">Light</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dark"
+              data-theme-name="Dark"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌙</span>
+        <span class="rc-themepicker-item-label">Dark</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cupcake"
+              data-theme-name="Cupcake"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧁</span>
+        <span class="rc-themepicker-item-label">Cupcake</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="bumblebee"
+              data-theme-name="Bumblebee"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🐝</span>
+        <span class="rc-themepicker-item-label">Bumblebee</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="emerald"
+              data-theme-name="Emerald"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💚</span>
+        <span class="rc-themepicker-item-label">Emerald</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="corporate"
+              data-theme-name="Corporate"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🏢</span>
+        <span class="rc-themepicker-item-label">Corporate</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="synthwave"
+              data-theme-name="Synthwave"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🕹️</span>
+        <span class="rc-themepicker-item-label">Synthwave</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="retro"
+              data-theme-name="Retro"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎞️</span>
+        <span class="rc-themepicker-item-label">Retro</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cyberpunk"
+              data-theme-name="Cyberpunk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🤖</span>
+        <span class="rc-themepicker-item-label">Cyberpunk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="valentine"
+              data-theme-name="Valentine"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❤️</span>
+        <span class="rc-themepicker-item-label">Valentine</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="halloween"
+              data-theme-name="Halloween"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎃</span>
+        <span class="rc-themepicker-item-label">Halloween</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="garden"
+              data-theme-name="Garden"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌻</span>
+        <span class="rc-themepicker-item-label">Garden</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="forest"
+              data-theme-name="Forest"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌲</span>
+        <span class="rc-themepicker-item-label">Forest</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="aqua"
+              data-theme-name="Aqua"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💧</span>
+        <span class="rc-themepicker-item-label">Aqua</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="lofi"
+              data-theme-name="Lofi"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎧</span>
+        <span class="rc-themepicker-item-label">Lofi</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="pastel"
+              data-theme-name="Pastel"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎨</span>
+        <span class="rc-themepicker-item-label">Pastel</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="fantasy"
+              data-theme-name="Fantasy"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧚</span>
+        <span class="rc-themepicker-item-label">Fantasy</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="wireframe"
+              data-theme-name="Wireframe"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🖼️</span>
+        <span class="rc-themepicker-item-label">Wireframe</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="black"
+              data-theme-name="Black"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">⚫</span>
+        <span class="rc-themepicker-item-label">Black</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="luxury"
+              data-theme-name="Luxury"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💎</span>
+        <span class="rc-themepicker-item-label">Luxury</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dracula"
+              data-theme-name="Dracula"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧛</span>
+        <span class="rc-themepicker-item-label">Dracula</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cmyk"
+              data-theme-name="Cmyk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎨</span>
+        <span class="rc-themepicker-item-label">Cmyk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="autumn"
+              data-theme-name="Autumn"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🍂</span>
+        <span class="rc-themepicker-item-label">Autumn</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="business"
+              data-theme-name="Business"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💼</span>
+        <span class="rc-themepicker-item-label">Business</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="acid"
+              data-theme-name="Acid"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧪</span>
+        <span class="rc-themepicker-item-label">Acid</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="lemonade"
+              data-theme-name="Lemonade"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🍋</span>
+        <span class="rc-themepicker-item-label">Lemonade</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="night"
+              data-theme-name="Night"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌃</span>
+        <span class="rc-themepicker-item-label">Night</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="coffee"
+              data-theme-name="Coffee"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">☕</span>
+        <span class="rc-themepicker-item-label">Coffee</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="winter"
+              data-theme-name="Winter"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❄️</span>
+        <span class="rc-themepicker-item-label">Winter</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dim"
+              data-theme-name="Dim"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💡</span>
+        <span class="rc-themepicker-item-label">Dim</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="nord"
+              data-theme-name="Nord"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❄️</span>
+        <span class="rc-themepicker-item-label">Nord</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="sunset"
+              data-theme-name="Sunset"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌅</span>
+        <span class="rc-themepicker-item-label">Sunset</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="caramellatte"
+              data-theme-name="Caramellatte"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🥛</span>
+        <span class="rc-themepicker-item-label">Caramellatte</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="abyss"
+              data-theme-name="Abyss"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌌</span>
+        <span class="rc-themepicker-item-label">Abyss</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="silk"
+              data-theme-name="Silk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧵</span>
+        <span class="rc-themepicker-item-label">Silk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+  </div>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar drawer panel for mobile -->
+    <div class="drawer-side z-60">
+      <label for="my-drawer" class="drawer-overlay"></label>
+      <aside class="rc-sidebar w-80 min-h-full overflow-y-auto">
+        <div class="relative h-full">
+          <div class="flex flex-col h-full">
+  <!-- Profile -->
+  <div class="p-6 pb-5">
+    <a href="/" class="flex items-center gap-4 no-underline group">
+      <span class="rc-avatar-ring" style="--rc-av-size: 4.25rem;">
+        <img src="/images/avatar.jpg" alt="Profile" class="rc-avatar" />
+      </span>
+      <span class="min-w-0">
+        <span class="block rc-serif text-lg font-bold text-base-content truncate group-hover:text-[color-mix(in_oklab,var(--rc-accent)_80%,transparent)] transition-colors">xiangjiajun</span>
+        
+          <span class="block text-sm rc-muted truncate">fake it until you make it</span>
+        
+      </span>
+    </a>
+  </div>
+
+  <!-- Menu -->
+  <nav class="px-4 py-3 space-y-0.5 flex-grow overflow-y-auto">
+    
+      
+        <a href="/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="rc-sidebar-text">首页</span>
+        </a>
+      
+        <a href="/archives/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-book-open"></i></span>
+          <span class="rc-sidebar-text">文章</span>
+        </a>
+      
+        <a href="/shuoshuo/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-pen-nib"></i></span>
+          <span class="rc-sidebar-text">个人随想录</span>
+        </a>
+      
+        <a href="/essay/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-lightbulb"></i></span>
+          <span class="rc-sidebar-text">知识库</span>
+        </a>
+      
+        <a href="/album/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-folder-open"></i></span>
+          <span class="rc-sidebar-text">资料库</span>
+        </a>
+      
+        <a href="/about/" class="rc-sidebar-link">
+          <span class="rc-sidebar-icon"><i class="fa-solid fa-user"></i></span>
+          <span class="rc-sidebar-text">关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <!-- Social -->
+  <div class="p-5 mt-auto border-t" style="border-color: color-mix(in oklab, var(--rc-line) 70%, transparent);">
+    <div class="flex justify-center items-center gap-2">
+      
+      
+      
+      
+        <a href="https://github.com/Impossible0105" class="rc-social" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <i class="fa-brands fa-github text-xl block"></i>
+        </a>
+      
+      
+      
+        <a href="https://space.bilibili.com/Impossible24" class="rc-social" target="_blank" rel="noopener noreferrer" title="哔哩哔哩">
+          <i class="fa-brands fa-bilibili text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.zhihu.com/people/Impossible24" class="rc-social" target="_blank" rel="noopener noreferrer" title="知乎">
+          <i class="fa-solid fa-circle-question text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.douyin.com/user/xiangjiajun24" class="rc-social" target="_blank" rel="noopener noreferrer" title="抖音">
+          <i class="fa-brands fa-tiktok text-xl block"></i>
+        </a>
+      
+      
+        <a href="https://www.xiaohongshu.com/user/profile/851977928" class="rc-social" target="_blank" rel="noopener noreferrer" title="小红书">
+          <i class="fa-solid fa-book-open text-xl block"></i>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Content area for Desktop (whole-body partial swapping via Swup) -->
+  <div id="swup" class="lg:ml-80 pt-20 px-4 lg:px-10 pb-8 flex-1 min-h-0">
+    
+<div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12">
+<article class="mx-auto max-w-3xl rc-reveal w-full">
+
+  <!-- Post Header -->
+  <header class="mb-12">
+    <div class="flex flex-wrap items-center gap-3 text-sm rc-muted mb-5">
+      
+      <span class="flex items-center gap-2">
+        <i class="fa-regular fa-calendar"></i>
+        <time datetime="2026-11-21T09:10:00.000Z">2026-11-21</time>
+      </span>
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-clock"></i>
+        <span>9 min read</span>
+      </span>
+    </div>
+
+    <h1 class="text-3xl md:text-4xl font-bold rc-serif leading-tight tracking-tight">eDesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注</h1>
+
+    
+      <div class="flex flex-wrap gap-2 mt-5">
+        
+        
+          
+            <a href="/notes/?tag=%E8%B5%84%E6%BA%90%E5%BA%93" class="rc-tag">
+              #资源库
+            </a>
+          
+            <a href="/notes/?tag=%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90" class="rc-tag">
+              #软件推荐
+            </a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- Post Content -->
+  <div class="post-content" id="processed-content">
+    <link rel="stylesheet" href="/css/post.css">
+    <blockquote>
+<p><strong>一句话定位</strong>：把乱糟糟的桌面收进收纳盒，再让一只叫小栖的桌宠帮你记待办、管专注，Windows 上的开源桌面整理工具。</p>
+</blockquote>
+<h2 id="一、它是什么，为什么值得看"><a href="#一、它是什么，为什么值得看" class="headerlink" title="一、它是什么，为什么值得看"></a>一、它是什么，为什么值得看</h2><p>桌面文件越攒越多，想整理又懒得一遍遍打开资源管理器——把文件拖进这个文件夹、再拖回那个文件夹，整理一次够累半天。eDesktop 就是冲着这个麻烦来的。</p>
+<p>它是一个 Windows 10&#x2F;11 上的桌面效率工具，把<strong>收纳盒、便签、待办、番茄钟</strong>做成了可以直接摆在桌面上的组件，组件能自由拖动、缩放、跨显示器摆放。后来作者又往里面加了一只叫「小栖」的桌宠，除了陪在桌面上，还能听懂你说话：说一句”帮我整理桌面”，它会先给一份整理方案，你确认之后才动手移文件；说”二十分钟后提醒我取快递”，就真的会写进待办。</p>
+<p>项目用 Electron + React + TypeScript 编写，<strong>MIT 开源、完全免费</strong>，数据全部留在你自己的电脑上。</p>
+<h2 id="二、核心亮点"><a href="#二、核心亮点" class="headerlink" title="二、核心亮点"></a>二、核心亮点</h2><ol>
+<li><p><strong>桌面整理不用再开资源管理器</strong>：收纳盒可以收纳文件、文件夹、快捷方式和系统图标，拖动排序、双击打开。桌面从”堆着一堆图标”变成”东西有地方放”，这是最直接解决痛点的一条。</p>
+</li>
+<li><p><strong>先给方案，你确认了才动文件</strong>：对小栖说”帮我整理桌面”，它会参考已有收纳盒的名字和内容，给出每个文件该去哪、为什么这么分。<strong>你点确认之后才会真正移动</strong>，不想动的文件在预览里取消勾选就行。整理工具最怕的就是”一键全自动”，这个设计让人放心。</p>
+</li>
+<li><p><strong>一只听得懂话的桌宠，不只是摆件</strong>：除了文字聊天，按 <code>Ctrl+Alt+V</code> 可以直接开口说话，回复在桌面气泡里显示。记待办、设提醒、改天气播报、开番茄钟，都能用一句话完成，还支持接着补充——“提醒我取快递”说漏了时间，再补一句”二十分钟后”即可。</p>
+</li>
+<li><p><strong>数据全在自己手里，录音不落盘</strong>：设置、待办、聊天、记忆、缓存和离线语音模型都放在程序旁的 <code>data</code> 文件夹，软件放哪个盘，数据就跟到哪个盘。录音只在内存里处理、<strong>不保存音频</strong>，识别出的文字按聊天记录存本地；对话发往本机 Ollama，推理在本机完成。</p>
+</li>
+<li><p><strong>布局能存快照，多屏也能摆</strong>：在控制中心可以把当前布局和配置存成快照，需要时恢复；组件支持跨显示器摆放，窗口位置和图标位置都有对应处理。</p>
+</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>使用前提与避坑</strong>：只支持 <strong>Windows 10&#x2F;11 x64</strong>，没有 macOS 和 Linux 版。桌宠的聊天和桌面整理功能需要<strong>本机先装好 <a target="_blank" rel="noopener" href="https://ollama.com/">Ollama</a> 并准备一个聊天模型</strong>，没装的话便签、待办、番茄钟这些组件照常能用，但语音交互和整理桌面用不了。语音功能首次会下载约 <strong>229 MB</strong> 的离线识别模型，之后无需 API Key。软件<strong>没有商业代码签名</strong>，Windows 可能弹 SmartScreen 提示，请从官方 Release 下载并核对附带的 SHA-256 校验值。收纳盒移动的是<strong>真实文件</strong>，不是软链接。</p>
+</blockquote>
+<h2 id="三、实际体验：几个真实场景"><a href="#三、实际体验：几个真实场景" class="headerlink" title="三、实际体验：几个真实场景"></a>三、实际体验：几个真实场景</h2><p>下面几个场景按项目官方文档和 v1.2.0 的更新说明整理，具体表现以你本机运行效果为准。</p>
+<h3 id="场景一：桌面文件堆成山"><a href="#场景一：桌面文件堆成山" class="headerlink" title="场景一：桌面文件堆成山"></a>场景一：桌面文件堆成山</h3><p>桌面上散着 PDF、Word、截图和一堆下载来的压缩包，一个个归类太费神。把话说给小栖听——“帮我整理桌面”，它会先扫描桌面，给出一份方案：每个文件放进哪个收纳盒、分类的理由是什么，预览里都能看得到。</p>
+<p>判断依据不只是文件名。<strong>PDF、DOCX、TXT、Markdown 和 CSV 还会读取少量正文</strong>作为参考，所以一份文件名很长、没写”简历”的求职材料，也能结合内容判断出该放进”工作”。目录整体收纳，不会递归翻里面的文件，<code>desktop.ini</code> 这类系统配置会被直接略过。</p>
+<p>分得不合适的，取消勾选，或者补一句”按项目整理”重新生成。拿不准的项目可以先留在桌面，不用勉强归类。</p>
+<p><img src="/images/eDesktop/desktop-components.png" alt="eDesktop 桌面总览：收纳盒、便签、待办、番茄钟与小栖"></p>
+<h3 id="场景二：随手记点东西"><a href="#场景二：随手记点东西" class="headerlink" title="场景二：随手记点东西"></a>场景二：随手记点东西</h3><p>桌面上的便签组件适合临时记，待办组件可以分组安排。想快速加一条，直接对小栖说”二十分钟后提醒我取快递”，它会写进待办的”临时安排”分组。接着说”还是改成半小时吧”，改的就是刚才那一条，不用重新描述。</p>
+<p>习惯也能记下来：”以后写代码 45 分钟，看书 25 分钟”，下次直接沿用；说”这次 20 分钟”只影响当前这一次，不会覆盖掉习惯。这些记忆在<strong>控制中心 → 小铃铛 → 小栖记住的事</strong>里可以逐条查看和忘记，原话来源也一并留着。</p>
+<p><img src="/images/eDesktop/pet-memory.png" alt="小栖的记忆管理：活动习惯、原话来源与最近操作"></p>
+<h3 id="场景三：不想打字，直接说"><a href="#场景三：不想打字，直接说" class="headerlink" title="场景三：不想打字，直接说"></a>场景三：不想打字，直接说</h3><p>按 <code>Ctrl+Alt+V</code> 开始录音，再按一次结束并自动发送，小栖会竖起耳朵、声波随音量变化，回复直接出现在桌面气泡里。按 <code>Esc</code> 或点 × 可以取消，<strong>每次最多录音一分钟</strong>。</p>
+<p>说一句”陪我专注一刻钟”，番茄钟就启动了，专注和休息结束时都有提醒，提醒声音可以关闭。需要留意的是，番茄钟目前支持立即开始、停止和查询，<strong>暂不支持预约未来某个时间开始</strong>。另外，应用退出或桌宠关闭期间是不会弹出提醒的，别指望它当后台常驻的提醒器。</p>
+<p><img src="/images/eDesktop/pet-voice.png" alt="语音输入与气泡回复：竖耳倾听，再直接显示执行结果"></p>
+<h3 id="场景四：管好桌面的一切"><a href="#场景四：管好桌面的一切" class="headerlink" title="场景四：管好桌面的一切"></a>场景四：管好桌面的一切</h3><p>组件的开关、新建收纳盒、调整桌宠、管理快照，都在<strong>系统托盘 → 控制中心</strong>里完成，不用在桌面上到处找设置入口。</p>
+<p><img src="/images/eDesktop/control-center.png" alt="控制中心：桌面组件、小栖与开机启动设置"></p>
+<p>所有组件都可以拖动、缩放、跨屏摆放，不喜欢回复太长，也能在<strong>小铃铛 → 聊天偏好</strong>里改称呼、回复长短和追问方式——直接告诉小栖”以后叫我小李，回答短一点，不要追问我”也行，两种入口改的是同一份偏好。偶尔想多听一点，说”这次详细一点”，不会把平时的偏好一起改掉。</p>
+<h2 id="四、适合谁-不适合谁"><a href="#四、适合谁-不适合谁" class="headerlink" title="四、适合谁 &#x2F; 不适合谁"></a>四、适合谁 &#x2F; 不适合谁</h2><p><strong>适合</strong>想要整理桌面、又不想在资源管理器里反复拖拽的人；想要一个统一的待办和专注入口、顺手用语音操作的 Windows 用户；在意数据存放位置、希望软件完全本地运行的人。</p>
+<p><strong>不太适合</strong>非 Windows 用户——目前只有 Windows 10&#x2F;11 x64 版。如果你的桌面本来就很干净，只需要个待办清单，那用更轻量的工具就够，没必要装一个 Electron 应用。<strong>项目还比较年轻</strong>（仓库 2026 年 8 月建立，目前 star 和 fork 都不多），功能在快速迭代，遇到边界情况建议直接提 Issue，作者的响应和文档的细致程度都能看出是认真在做。</p>
+<h2 id="五、获取与下载"><a href="#五、获取与下载" class="headerlink" title="五、获取与下载"></a>五、获取与下载</h2><ul>
+<li><strong>GitHub 仓库</strong>：<a target="_blank" rel="noopener" href="https://github.com/six486486/eDesktop">https://github.com/six486486/eDesktop</a></li>
+<li><strong>版本</strong>：当前最新为 <strong>v1.2.0</strong>（2026-09-14 发布，主题”小栖会整理桌面了”）</li>
+<li><strong>支持平台</strong>：Windows 10 &#x2F; 11 x64</li>
+<li><strong>安装方式</strong>：下载便携 ZIP（<code>eDesktop-1.2.0-windows-x64.zip</code>，约 150 MB），<strong>完整解压后运行 <code>eDesktop.exe</code>，整个文件夹都要保留</strong>。无需安装，也附带 <code>.sha256</code> 校验文件。</li>
+</ul>
+<p><strong>想用桌宠的话，额外两步</strong>：</p>
+<ol>
+<li>安装并启动 <a target="_blank" rel="noopener" href="https://ollama.com/">Ollama</a>，准备一个聊天模型，小栖会自动连接本机默认服务。</li>
+<li>首次使用语音功能时，按 <code>Ctrl+Alt+V</code> 触发约 229 MB 离线识别模型下载，完成后再按一次开始录音。</li>
+</ol>
+<p><strong>从旧版升级</strong>：先从系统托盘正常退出，替换程序文件时<strong>务必保留自己的 <code>data</code> 文件夹</strong>——里面是你的设置、待办、聊天记录和收纳文件。移动软件时携带整个文件夹；如果开启了开机启动，移动后请关闭再重新开启一次，让 Windows 记录新路径。</p>
+<p><strong>从源码运行</strong>：需要 Node.js 22.13 或更高版本（建议 24），技术栈是 Electron、React、TypeScript 和 Vite。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/six486486/eDesktop.git</span><br><span class="line"><span class="built_in">cd</span> eDesktop</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>打包成便携 ZIP 用 <code>npm run package:portable</code>。打包前先退出正在运行的 eDesktop，分发包不会包含个人数据。</p>
+<hr>
+<p><em>如果你也在用 eDesktop，欢迎在评论区聊聊你的桌面配置、小栖的模型选了哪个，或者遇到的踩坑经历。</em></p>
+
+  </div>
+
+  <!-- Tags Footer -->
+  
+    <footer class="mt-12 pt-8 border-t border-base-300">
+      <div class="flex flex-wrap gap-2 items-center">
+        <span class="text-sm font-medium rc-muted">Tags:</span>
+        
+          <a href="/notes/?tag=%E8%B5%84%E6%BA%90%E5%BA%93" class="rc-tag">
+            #资源库
+          </a>
+        
+          <a href="/notes/?tag=%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90" class="rc-tag">
+            #软件推荐
+          </a>
+        
+      </div>
+    </footer>
+  
+
+  <!-- Share + Navigation -->
+  <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="rc-card rc-card-body">
+      
+
+    </div>
+
+    <div class="rc-card rc-card-body">
+      <h3 class="text-base font-semibold rc-serif mb-4">Navigation</h3>
+      <div class="space-y-3">
+        <a href="/notes/" class="rc-btn rc-btn-outline w-full justify-start">
+          <i class="fa-solid fa-folder-tree"></i>
+          All Notes
+        </a>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Previous/Next Navigation -->
+  
+  <div class="mt-12">
+    <h3 class="text-base font-semibold rc-serif mb-4">More Posts</h3>
+    <nav class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      
+        <a href="/2026/08/04/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="rc-card rc-focus rc-card-body group md:text-right">
+          <div class="flex items-center gap-3 md:justify-end">
+            <div class="flex-1 min-w-0 md:text-right">
+              <div class="text-xs rc-muted">Next Post</div>
+              <div class="font-semibold truncate group-hover:text-[color-mix(in_oklab,var(--rc-accent)_90%,transparent)] transition-colors">多模态学习系列-强化学习</div>
+            </div>
+            <i class="fa-solid fa-right-long rc-muted"></i>
+          </div>
+        </a>
+      
+    </nav>
+  </div>
+  
+
+</article>
+
+
+<aside class="hidden lg:block">
+  
+<nav class="rc-toc" aria-label="On this page">
+  <div class="rc-toc-head">
+    <i class="fa-solid fa-list-ul"></i>
+    <span>On this page</span>
+  </div>
+  <ul class="rc-toc-list">
+    
+      
+      <li class="rc-toc-item" data-level="2" style="--rc-lvl: 2">
+        <a href="#一、它是什么，为什么值得看" class="rc-toc-link" data-toc-target="一、它是什么，为什么值得看" data-level="2">
+          <span class="rc-toc-dot"></span>
+          <span class="rc-toc-label">一、它是什么，为什么值得看</span>
+        </a>
+      </li>
+    
+      
+      <li class="rc-toc-item" data-level="2" style="--rc-lvl: 2">
+        <a href="#二、核心亮点" class="rc-toc-link" data-toc-target="二、核心亮点" data-level="2">
+          <span class="rc-toc-dot"></span>
+          <span class="rc-toc-label">二、核心亮点</span>
+        </a>
+      </li>
+    
+      
+      <li class="rc-toc-item" data-level="2" style="--rc-lvl: 2">
+        <a href="#三、实际体验：几个真实场景" class="rc-toc-link" data-toc-target="三、实际体验：几个真实场景" data-level="2">
+          <span class="rc-toc-dot"></span>
+          <span class="rc-toc-label">三、实际体验：几个真实场景</span>
+        </a>
+      </li>
+    
+      
+      <li class="rc-toc-item" data-level="2" style="--rc-lvl: 2">
+        <a href="#四、适合谁-不适合谁" class="rc-toc-link" data-toc-target="四、适合谁-不适合谁" data-level="2">
+          <span class="rc-toc-dot"></span>
+          <span class="rc-toc-label">四、适合谁 / 不适合谁</span>
+        </a>
+      </li>
+    
+      
+      <li class="rc-toc-item" data-level="2" style="--rc-lvl: 2">
+        <a href="#五、获取与下载" class="rc-toc-link" data-toc-target="五、获取与下载" data-level="2">
+          <span class="rc-toc-dot"></span>
+          <span class="rc-toc-label">五、获取与下载</span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+</aside>
+
+</div>
+
+<!-- 传递主题配置到前端 -->
+<script>
+window.themeConfig = {
+  code_collapse: {
+    enabled: true,
+    lines: 5
+  }
+};
+</script>
+
+
+  </div>
+
+  <!-- Fixed top navbar for desktop (right of the sidebar, above the content only) -->
+  <div class="rc-nav hidden lg:flex fixed top-0 left-80 right-0 z-50 h-16 items-center px-4 lg:px-8">
+    <div class="flex-1 flex items-center px-2">
+      <div class="rc-nav-widget">
+  <!-- Live clock (computer time) -->
+  <div class="rc-widget-clock" title="Local time">
+    <span class="rc-widget-time rc-time">--:--</span>
+    <span class="rc-widget-date rc-date">---</span>
+  </div>
+
+  <!-- Weather chip (click to set a city) -->
+  <div class="rc-weather-wrap">
+    <button class="rc-weather" type="button" title="Weather — click to set location">
+      <span class="rc-weather-icon rc-w-icon">🌤</span>
+      <span class="rc-weather-temp rc-w-temp">--°C</span>
+      <span class="rc-weather-city rc-w-city">--</span>
+    </button>
+
+    <div class="rc-widget-pop" hidden>
+      <input class="rc-input rc-city-input" placeholder="City (e.g. Berlin)" />
+      <div class="rc-widget-pop-actions">
+        <button class="rc-btn rc-btn-accent rc-btn-sm rc-city-go" type="button">Set</button>
+        <button class="rc-btn rc-btn-ghost rc-btn-sm rc-city-auto" type="button">Auto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="flex-none">
+      
+
+<div class="rc-themepicker" data-theme-picker>
+  <button type="button" class="rc-themepicker-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change theme">
+    <span class="rc-themepicker-swatch" aria-hidden="true"></span>
+    <span class="rc-themepicker-label" data-theme-label>Theme</span>
+    <i class="fa-solid fa-chevron-down rc-themepicker-caret" aria-hidden="true"></i>
+  </button>
+
+  <div class="rc-themepicker-menu" role="listbox" aria-label="Themes" hidden>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="light"
+              data-theme-name="Light"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌞</span>
+        <span class="rc-themepicker-item-label">Light</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dark"
+              data-theme-name="Dark"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌙</span>
+        <span class="rc-themepicker-item-label">Dark</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cupcake"
+              data-theme-name="Cupcake"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧁</span>
+        <span class="rc-themepicker-item-label">Cupcake</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="bumblebee"
+              data-theme-name="Bumblebee"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🐝</span>
+        <span class="rc-themepicker-item-label">Bumblebee</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="emerald"
+              data-theme-name="Emerald"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💚</span>
+        <span class="rc-themepicker-item-label">Emerald</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="corporate"
+              data-theme-name="Corporate"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🏢</span>
+        <span class="rc-themepicker-item-label">Corporate</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="synthwave"
+              data-theme-name="Synthwave"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🕹️</span>
+        <span class="rc-themepicker-item-label">Synthwave</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="retro"
+              data-theme-name="Retro"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎞️</span>
+        <span class="rc-themepicker-item-label">Retro</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cyberpunk"
+              data-theme-name="Cyberpunk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🤖</span>
+        <span class="rc-themepicker-item-label">Cyberpunk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="valentine"
+              data-theme-name="Valentine"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❤️</span>
+        <span class="rc-themepicker-item-label">Valentine</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="halloween"
+              data-theme-name="Halloween"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎃</span>
+        <span class="rc-themepicker-item-label">Halloween</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="garden"
+              data-theme-name="Garden"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌻</span>
+        <span class="rc-themepicker-item-label">Garden</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="forest"
+              data-theme-name="Forest"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌲</span>
+        <span class="rc-themepicker-item-label">Forest</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="aqua"
+              data-theme-name="Aqua"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💧</span>
+        <span class="rc-themepicker-item-label">Aqua</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="lofi"
+              data-theme-name="Lofi"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎧</span>
+        <span class="rc-themepicker-item-label">Lofi</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="pastel"
+              data-theme-name="Pastel"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎨</span>
+        <span class="rc-themepicker-item-label">Pastel</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="fantasy"
+              data-theme-name="Fantasy"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧚</span>
+        <span class="rc-themepicker-item-label">Fantasy</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="wireframe"
+              data-theme-name="Wireframe"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🖼️</span>
+        <span class="rc-themepicker-item-label">Wireframe</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="black"
+              data-theme-name="Black"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">⚫</span>
+        <span class="rc-themepicker-item-label">Black</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="luxury"
+              data-theme-name="Luxury"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💎</span>
+        <span class="rc-themepicker-item-label">Luxury</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dracula"
+              data-theme-name="Dracula"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧛</span>
+        <span class="rc-themepicker-item-label">Dracula</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="cmyk"
+              data-theme-name="Cmyk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🎨</span>
+        <span class="rc-themepicker-item-label">Cmyk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="autumn"
+              data-theme-name="Autumn"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🍂</span>
+        <span class="rc-themepicker-item-label">Autumn</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="business"
+              data-theme-name="Business"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💼</span>
+        <span class="rc-themepicker-item-label">Business</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="acid"
+              data-theme-name="Acid"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧪</span>
+        <span class="rc-themepicker-item-label">Acid</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="lemonade"
+              data-theme-name="Lemonade"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🍋</span>
+        <span class="rc-themepicker-item-label">Lemonade</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="night"
+              data-theme-name="Night"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌃</span>
+        <span class="rc-themepicker-item-label">Night</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="coffee"
+              data-theme-name="Coffee"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">☕</span>
+        <span class="rc-themepicker-item-label">Coffee</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="winter"
+              data-theme-name="Winter"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❄️</span>
+        <span class="rc-themepicker-item-label">Winter</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="dim"
+              data-theme-name="Dim"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">💡</span>
+        <span class="rc-themepicker-item-label">Dim</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="nord"
+              data-theme-name="Nord"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">❄️</span>
+        <span class="rc-themepicker-item-label">Nord</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="sunset"
+              data-theme-name="Sunset"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌅</span>
+        <span class="rc-themepicker-item-label">Sunset</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="caramellatte"
+              data-theme-name="Caramellatte"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🥛</span>
+        <span class="rc-themepicker-item-label">Caramellatte</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="abyss"
+              data-theme-name="Abyss"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🌌</span>
+        <span class="rc-themepicker-item-label">Abyss</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+      <button type="button" role="option" class="rc-themepicker-item"
+              data-theme-value="silk"
+              data-theme-name="Silk"
+              aria-selected="false">
+        <span class="rc-themepicker-item-icon" aria-hidden="true">🧵</span>
+        <span class="rc-themepicker-item-label">Silk</span>
+        <i class="fa-solid fa-check rc-themepicker-check" aria-hidden="true"></i>
+      </button>
+    
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+
+  <!-- Footer, 页面只出现一次 -->
+  <footer class="mt-auto">
+    <!-- Footer -->
+<footer class="footer footer-center sm:footer-horizontal p-6 text-base-content">
+  <div class="grid grid-flow-col gap-4">
+    <div class="text-center">
+      <span>© 2026 xiangjiajun</span>
+      <span class="rc-muted">·</span>
+      <span class="rc-muted">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer" class="link link-info no-underline hover:opacity-80">Hexo</a></span>
+      <span class="rc-muted">·</span>
+      <span class="rc-muted">
+        Theme:
+        <a href="https://github.com/jiehua1995/hexo-theme-researcher" target="_blank" rel="noopener noreferrer" class="link link-info no-underline hover:opacity-80">
+          Researcher v<span id="current-theme-version"></span>
+          <span id="theme-update-message" class="text-sm" style="display:none;">(<i class="fa-solid fa-cloud-arrow-up"></i> Update Available!)</span>
+        </a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const versionEl = document.getElementById('current-theme-version');
+  const updateMessageEl = document.getElementById('theme-update-message');
+
+  const currentVersion = '0.4.0';
+  versionEl.textContent = currentVersion;
+
+  fetch('https://api.github.com/repos/jiehua1995/hexo-theme-researcher/releases/latest')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.tag_name) {
+        const latestVersion = data.tag_name.replace(/^v/, '');
+        if (latestVersion !== currentVersion) {
+          updateMessageEl.style.display = 'inline';
+          updateMessageEl.title = `Latest version: ${latestVersion}`;
+        }
+      }
+    })
+    .catch(() => {});
+})();
+</script>
+
+  </footer>
+
+  <!-- back to top -->
+  <!-- 返回顶部按钮 -->
+<button id="back_to_top"
+  class="rc-backtop fixed bottom-8 right-8 opacity-0 pointer-events-none transition-opacity duration-300 z-50 "
+  title="Back to top" aria-label="Back to top" tabindex="0">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+  (function(){
+    const backToTopBtn = document.getElementById('back_to_top');
+
+    function toggleVisibility() {
+      if(window.scrollY > 100) {
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+        backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backToTopBtn.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        backToTopBtn.click();
+      }
+    });
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    toggleVisibility();
+  })();
+</script>
+
+
+  <!-- cookie consent -->
+  <div class="rc-cookie" id="rcCookie" role="dialog" aria-live="polite" hidden>
+  <div class="rc-cookie-card">
+    <div class="rc-cookie-icon">🍪</div>
+    <div class="rc-cookie-text">
+      <strong>We value your privacy</strong>
+      <span>This website may use cookies to remember your theme, local weather and site preferences. By continuing to browse, you agree to the use of cookies.</span>
+    </div>
+    <div class="rc-cookie-actions">
+      <button class="rc-btn rc-btn-accent rc-btn-sm" id="rcCookieAccept" type="button">Accept</button>
+      <button class="rc-btn rc-btn-ghost rc-btn-sm" id="rcCookieReject" type="button">Reject</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- MathJax for mathematical formulas -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        ready: () => {
+          MathJax.startup.defaultReady();
+        },
+        pageReady: () => {
+          MathJax.startup.defaultPageReady().then(() => {
+            // Clean up $$ delimiters after rendering
+            setTimeout(() => {
+              const walker = document.createTreeWalker(
+                document.querySelector('.post-content') || document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+
+              let textNode;
+              const nodesToUpdate = [];
+
+              while (textNode = walker.nextNode()) {
+                if (textNode.nodeValue.includes('$$') &&
+                    textNode.parentNode.querySelector('mjx-container[display="true"]')) {
+                  nodesToUpdate.push(textNode);
+                }
+              }
+
+              nodesToUpdate.forEach(node => {
+                node.nodeValue = node.nodeValue.replace(/\$\$/g, '');
+              });
+            }, 100);
+          });
+        }
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Motion + nav active state (exposed so Swup can re-run it after a swap) -->
+  <script>
+    function __rcSetActive() {
+      var path = location.pathname.replace(/\/(index)?$/, '') || '/';
+      document.querySelectorAll('.rc-sidebar-link').forEach(function (link) {
+        var href = (link.getAttribute('href') || '').replace(/\/(index)?$/, '') || '/';
+        link.classList.toggle('is-active', href === path);
+      });
+    }
+
+    function __rcInitToc() {
+      __rcInitToc.links = Array.prototype.slice.call(document.querySelectorAll('.rc-toc-link[data-toc-target]'));
+      __rcInitToc.list = __rcInitToc.links.length ? __rcInitToc.links[0].closest('.rc-toc-list') : null;
+      __rcInitToc.container = __rcInitToc.links.length ? __rcInitToc.links[0].closest('.rc-toc') : null;
+      __rcInitToc.lastActive = -1;
+      __rcInitToc.shift = 0; // reset the centring offset — a stale value from a previous
+                             // (longer) list would corrupt the first frame after a Swup swap
+      if (!__rcInitToc.bound) {
+        __rcInitToc.bound = true;
+
+        function updateToc() {
+          var links = __rcInitToc.links || [];
+          if (!links.length) return;
+          // Track the SECTION currently occupying the MIDDLE of the viewport --
+          // i.e. the deepest entry whose heading has scrolled past the vertical
+          // centre line. This feels more natural than tracking the top.
+          var mid = window.innerHeight * 0.5;
+          var activeIndex = 0;
+          links.forEach(function (link, i) {
+            var t = document.getElementById(link.getAttribute('data-toc-target'));
+            if (t && t.getBoundingClientRect().top <= mid) activeIndex = i;
+          });
+          // emphasis (colour + font-size) is class-driven; only swap it when the
+          // active section actually changes so we don't churn layout every frame
+          if (__rcInitToc.lastActive !== activeIndex) {
+            __rcInitToc.lastActive = activeIndex;
+            links.forEach(function (link, i) {
+              link.classList.toggle('is-active', i === activeIndex);
+            });
+          }
+          // Centre the active entry inside the focus window (screen centre), but
+          // clamp the shift so the list always fills its window (never shows an
+          // empty gap). Otherwise a short list (e.g. CV) drifts oddly and a long
+          // list jumps at the top/bottom ends — which reads as "not smooth".
+          var list = __rcInitToc.list;
+          var container = __rcInitToc.container;
+          var activeEl = links[activeIndex];
+          if (list && container && activeEl) {
+            var item = activeEl.closest('.rc-toc-item') || activeEl;
+            var cRect = container.getBoundingClientRect();
+            var cCenter = cRect.top + cRect.height * 0.5;
+            var prev = __rcInitToc.shift || 0;
+            var lRect = list.getBoundingClientRect();
+            var listTop = lRect.top - prev;         // natural (unshifted) bounds
+            var listBottom = lRect.bottom - prev;
+            var itemRect = item.getBoundingClientRect();
+            var itemCenter = itemRect.top + itemRect.height * 0.5 - prev;
+            var target = cCenter - itemCenter;
+            var minShift = cRect.bottom - listBottom; // largest up-shift (no bottom gap)
+            var maxShift = cRect.top - listTop;       // largest down-shift (no top gap)
+            var shift = Math.max(minShift, Math.min(maxShift, target));
+            list.style.transform = 'translateY(' + shift + 'px)';
+            __rcInitToc.shift = shift;
+          }
+        }
+
+        __rcInitToc.update = updateToc;
+        // throttle to animation frames so the scroll never janks
+        function requestToc() {
+          if (__rcInitToc.raf) return;
+          __rcInitToc.raf = requestAnimationFrame(function () {
+            __rcInitToc.raf = 0;
+            updateToc();
+          });
+        }
+        __rcInitToc.request = requestToc;
+        window.addEventListener('scroll', requestToc, { passive: true });
+        window.addEventListener('resize', requestToc, { passive: true });
+        window.addEventListener('load', updateToc);
+
+        // Clicking a TOC entry (or any in-page #anchor) should land the heading
+        // about mid-screen, not tucked under the fixed top bar (issue: too high).
+        document.addEventListener('click', function (ev) {
+          var a = ev.target && ev.target.closest && ev.target.closest('a[href^="#"]');
+          if (!a) return;
+          var hash = a.getAttribute('href');
+          if (!hash || hash === '#' || hash.length < 2) return;
+          var target = document.getElementById(hash.slice(1));
+          if (!target) return;
+          ev.preventDefault();
+          var y = target.getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.42;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        });
+      }
+      if (__rcInitToc.update) __rcInitToc.update();
+    }
+
+    function __rcInitFilters() {
+      var page = document.getElementById('swup') || document;
+      Array.prototype.forEach.call(page.querySelectorAll('[data-filter]'), function (scope) {
+        // Guard so re-init (after a Swup swap) never double-binds live controls.
+        if (scope.getAttribute('data-f-inited')) { /* keep listening on a live scope */ }
+        function bind() {
+          var list = page.querySelector('[data-filter-list]');
+          var items = list ? Array.prototype.slice.call(list.querySelectorAll('[data-filter-item]')) : [];
+          if (!items.length) return;
+          var controls = {
+            status: scope.querySelector('[data-filter-type="status"]'),
+            category: scope.querySelector('[data-filter-type="category"]'),
+            year: scope.querySelector('[data-filter-type="year"]'),
+            search: scope.querySelector('[data-filter-type="search"]')
+          };
+          var countEl = page.querySelector('[data-filter-count]');
+          var emptyEl = page.querySelector('[data-filter-empty]');
+          var catParam = new URLSearchParams(location.search).get('category');
+          if (catParam && controls.category) controls.category.value = catParam;
+
+          function normalizeList(v) {
+            return (v || '').toLowerCase().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+          }
+          // Split a comma-separated attribute WITHOUT lower-casing — used for tag
+          // names, which are case-sensitive (a tag named "Testing" is distinct
+          // from "testing"). Categories are matched case-insensitively via
+          // normalizeList() above.
+          function splitList(v) {
+            return (v || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+          }
+          // Tags the user has toggled in the interactive tag cloud. The tag cloud
+          // is the single source of truth for tag filtering, so the exact tag
+          // names (preserving case) are returned here — this is what makes a
+          // `?tag=X` arrival both highlight the pill AND apply the filter in one
+          // consistent place.
+          function selectedTags() {
+            var out = [];
+            Array.prototype.forEach.call(page.querySelectorAll('[data-tagcloud] .rc-tagcloud-item.is-active'), function (b) {
+              var t = b.getAttribute('data-tag');
+              if (t && out.indexOf(t) < 0) out.push(t);
+            });
+            return out;
+          }
+          function apply() {
+            var cat = (controls.category && controls.category.value) || '';
+            var year = (controls.year && controls.year.value) || '';
+            var status = (controls.status && controls.status.value) || '';
+            var q = (controls.search ? controls.search.value : '').toLowerCase().trim();
+            var selTags = selectedTags();
+            var shown = 0;
+            items.forEach(function (item) {
+              var okSt = !status || (item.getAttribute('data-status') || '') === status;
+              var okCat = !cat || normalizeList(item.getAttribute('data-category')).indexOf(cat.toLowerCase()) > -1;
+              var okYear = !year || (item.getAttribute('data-year') || '') === year;
+              var itemTags = splitList(item.getAttribute('data-tags'));
+              var okTag = !selTags.length || itemTags.some(function (t) { return selTags.indexOf(t) > -1; });
+              var text = [
+                item.getAttribute('data-title'), item.getAttribute('data-text'),
+                item.getAttribute('data-tags'), item.getAttribute('data-category'),
+                item.getAttribute('data-year')
+              ].join(' ').toLowerCase();
+              var okSearch = !q || text.indexOf(q) > -1;
+              var show = okSt && okCat && okYear && okTag && okSearch;
+              item.style.display = show ? '' : 'none';
+              if (show) shown++;
+            });
+            if (countEl) countEl.textContent = shown === items.length ? ('Showing all ' + items.length) : ('Found ' + shown);
+            if (emptyEl) emptyEl.classList.toggle('hidden', shown > 0);
+            window.__rcFilterApply = apply; // let the tag cloud re-run the same filter
+          }
+          if (controls.status) controls.status.addEventListener('change', apply);
+          if (controls.category) controls.category.addEventListener('change', apply);
+          if (controls.year) controls.year.addEventListener('change', apply);
+          if (controls.search) controls.search.addEventListener('input', apply);
+          apply();
+        }
+        scope.setAttribute('data-f-inited', '1');
+        bind();
+      });
+    }
+
+    // Set a card's expanded state and sync its chevron. This is the single
+    // source of truth for detail visibility (see .rc-card[data-expanded] CSS).
+    // A collapsed card shows only the title + own badge + key meta + Dimensions
+    // badge; an expanded card reveals the full detail + Altmetric badge too.
+    function __rcSetCardExpanded(card, expanded) {
+      expanded = !!expanded;
+      card.setAttribute('data-expanded', expanded ? 'true' : 'false');
+      var btn = card.querySelector('.rc-expand');
+      if (btn) {
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        var icon = btn.querySelector('i');
+        if (icon) icon.className = expanded ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+      }
+    }
+
+    // Detail / Compact view switching on list pages (Publications, Projects,
+    // Talks, Notes). Reads the last choice from localStorage and applies
+    // `.rc-list--compact` to the matching `[data-view]` container, so it survives
+    // a Swup swap too. Switching mode RESETS every card to that mode's default
+    // state (Compact → all collapsed, Detail → all expanded).
+    function __rcInitViews() {
+      var f = (window.themeConfig && window.themeConfig.features) || {};
+      if (f.view_toggle === false) return;
+      var page = document.getElementById('swup') || document;
+      Array.prototype.forEach.call(page.querySelectorAll('[data-view]'), function (list) {
+        var toggle = page.querySelector('[data-view-toggle]');
+        var key = list.getAttribute('data-view-key') || 'rc-view';
+        var cards = Array.prototype.slice.call(list.querySelectorAll('.rc-card'));
+        var saved = null;
+        try { saved = window.localStorage.getItem(key); } catch (e) {}
+        function apply(mode, force) {
+          mode = mode === 'compact' ? 'compact' : 'detail';
+          list.setAttribute('data-view', mode);
+          list.classList.toggle('rc-list--compact', mode === 'compact');
+          // force=true (an explicit toggle click) resets EVERY card to the mode's
+          // default. On a re-init we only set the default for cards that have
+          // never been touched, preserving any per-card expand/collapse the user
+          // made (otherwise the MutationObserver would undo a manual expand).
+          cards.forEach(function (c) {
+            if (force || !c.hasAttribute('data-expanded')) __rcSetCardExpanded(c, mode === 'detail');
+          });
+          if (toggle) {
+            Array.prototype.forEach.call(toggle.querySelectorAll('[data-view-mode]'), function (btn) {
+              var active = btn.getAttribute('data-view-mode') === mode;
+              btn.classList.toggle('is-active', active);
+              btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+          }
+          try { window.localStorage.setItem(key, mode); } catch (e) {}
+        }
+        if (toggle && !toggle.getAttribute('data-v-inited')) {
+          toggle.setAttribute('data-v-inited', '1');
+          Array.prototype.forEach.call(toggle.querySelectorAll('[data-view-mode]'), function (btn) {
+            btn.addEventListener('click', function () { apply(btn.getAttribute('data-view-mode'), true); });
+          });
+        }
+        apply(saved || 'detail', false);
+      });
+    }
+
+    // Re-scan for Altmetric / Dimensions citation badges. Their embed scripts are
+    // loaded globally and self-initialise on first load; after a Swup swap the
+    // container elements are new, so we ask each library to re-scan the DOM.
+    function __rcInitBadges() {
+      var f = (window.themeConfig && window.themeConfig.features) || {};
+      if (f.citation_badges === false) return;
+      if (window.__dimensions_embed && window.__dimensions_embed.addBadges) {
+        try { window.__dimensions_embed.addBadges(); } catch (e) {}
+      }
+      if (typeof window._altmetric_embed_init === 'function') {
+        try { window._altmetric_embed_init(); } catch (e) {}
+      }
+      // Hide any badge that has no data. The Dimensions embed fetches metrics
+      // asynchronously and shows a "?" placeholder when a DOI has no records, so
+      // poll for a short while and drop the empty badges the user asked to hide.
+      var checks = 0;
+      var timer = setInterval(function () {
+        checks++;
+        var anyHidden = false;
+        Array.prototype.forEach.call(document.querySelectorAll('.__dimensions_badge_embed__'), function (el) {
+          if (el.style.display === 'none') return;
+          var link = el.querySelector('a.__dimensions_Link');
+          var label = link ? (link.getAttribute('aria-label') || '') : '';
+          var m = label.match(/(\d+)\s*total citations/i);
+          var hasData = !!m && Number(m[1]) > 0;
+          if (link && !hasData) { el.style.display = 'none'; anyHidden = true; }
+          // no anchor yet means the fetch is still in-flight → wait another tick
+        });
+        // Hide a whole row only when BOTH badges are empty: the Dimensions one is
+        // hidden above AND the Altmetric one rendered nothing (no mentions). Re-show
+        // if content later arrives, so we never hide a badge that was just slow.
+        if (checks >= 2) {
+          Array.prototype.forEach.call(document.querySelectorAll('.rc-cite-badges'), function (row) {
+            var anyVisible = false;
+            Array.prototype.forEach.call(row.children, function (c) {
+              if (c.style.display === 'none') return;
+              if (c.classList.contains('altmetric-embed')) {
+                if (c.childElementCount > 0) anyVisible = true;
+              } else {
+                anyVisible = true;
+              }
+            });
+            if (!anyVisible) { row.style.display = 'none'; anyHidden = true; }
+            else if (row.style.display === 'none') { row.style.display = ''; }
+          });
+        }
+        if (checks >= 12 || !anyHidden) clearInterval(timer);
+      }, 700);
+    }
+
+    // Per-card expand/collapse. Each card carries a chevron (visible in EVERY
+    // mode); clicking toggles the card's `data-expanded` so the full detail
+    // content appears or folds back in place.
+    function __rcInitExpand() {
+      var page = document.getElementById('swup') || document;
+      Array.prototype.forEach.call(page.querySelectorAll('.rc-expand'), function (btn) {
+        if (btn.getAttribute('data-ex-inited')) return;
+        btn.setAttribute('data-ex-inited', '1');
+        var card = btn.closest('.rc-card');
+        if (!card) return;
+        btn.addEventListener('click', function () {
+          __rcSetCardExpanded(card, card.getAttribute('data-expanded') !== 'true');
+        });
+      });
+    }
+
+    // Interactive tag cloud (Notes): buttons toggle selection and re-run the SAME
+    // page filter (no reload), so the notes grid updates live. Selection colour
+    // is class-driven (.is-active); a "Clear selection" button appears when needed.
+    function __rcInitTagCloud() {
+      var f = (window.themeConfig && window.themeConfig.features) || {};
+      if (f.tag_cloud === false) return;
+      var page = document.getElementById('swup') || document;
+      Array.prototype.forEach.call(page.querySelectorAll('[data-tagcloud]'), function (cloud) {
+        var clearBtn = page.querySelector('[data-tag-clear]');
+        function selectedNames() {
+          return Array.prototype.map.call(cloud.querySelectorAll('.rc-tagcloud-item.is-active'), function (b) {
+            return b.getAttribute('data-tag');
+          }).filter(Boolean);
+        }
+        function refreshClear() {
+          var any = cloud.querySelectorAll('.rc-tagcloud-item.is-active').length > 0;
+          if (clearBtn) clearBtn.hidden = !any;
+        }
+        function refresh() {
+          if (window.__rcFilterApply) { try { window.__rcFilterApply(); } catch (e) {} }
+        }
+        // keep the URL in sync so the current tags can be shared / bookmarked
+        function syncUrl() {
+          try {
+            var names = selectedNames();
+            var sp = new URLSearchParams(location.search);
+            if (names.length) sp.set('tag', names.join(','));
+            else sp.delete('tag');
+            var qs = sp.toString();
+            history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+          } catch (e) {}
+        }
+        // Rebuild the selection from the current `?tag=…` URL params. Runs on
+        // EVERY init (not just the first), so even if Swup updates the history
+        // a little after the DOM swap, the next re-init re-highlights the pill.
+        // Tags are matched by exact name (case-sensitive) — "Testing" and
+        // "testing" are distinct tags, so only the one the user picked lights up.
+        function syncFromUrl() {
+          var initial = new URLSearchParams(location.search).get('tag');
+          Array.prototype.forEach.call(cloud.querySelectorAll('.rc-tagcloud-item'), function (b) {
+            b.classList.remove('is-active');
+          });
+          if (initial) {
+            initial.split(',').forEach(function (t) {
+              t = t.trim();
+              if (!t) return;
+              Array.prototype.forEach.call(cloud.querySelectorAll('.rc-tagcloud-item'), function (btn) {
+                if (btn.getAttribute('data-tag') === t) btn.classList.add('is-active');
+              });
+            });
+          }
+          refreshClear();
+        }
+        syncFromUrl();
+        if (!cloud.getAttribute('data-tc-inited')) {
+          cloud.setAttribute('data-tc-inited', '1');
+          Array.prototype.forEach.call(cloud.querySelectorAll('.rc-tagcloud-item'), function (btn) {
+            btn.addEventListener('click', function () {
+              btn.classList.toggle('is-active');
+              refreshClear();
+              syncUrl();
+              refresh();
+            });
+          });
+          if (clearBtn && !clearBtn.getAttribute('data-tc-inited')) {
+            clearBtn.setAttribute('data-tc-inited', '1');
+            clearBtn.addEventListener('click', function () {
+              Array.prototype.forEach.call(cloud.querySelectorAll('.rc-tagcloud-item'), function (b) { b.classList.remove('is-active'); });
+              refreshClear();
+              syncUrl();
+              refresh();
+            });
+          }
+        }
+      });
+    }
+
+    function __rcInitMotion() {
+      var mcfg = (window.themeConfig && window.themeConfig.motion) || {};
+      var revealOn = !mcfg.reveal || mcfg.reveal.enabled !== false;
+      var focusOn = !mcfg.scroll_focus || mcfg.scroll_focus.enabled !== false;
+
+      // Reveal: fade every section in. All `.rc-reveal` are marked visible so
+      // content can never be stuck hidden (no blank page), no matter how the
+      // page was reached — direct load, Swup swap or back/forward cache. The
+      // scroll scaling / 3D effect is driven by .rc-focus below, not by this.
+      Array.prototype.forEach.call(document.querySelectorAll('.rc-reveal'), function (el) {
+        if (!el.classList.contains('is-visible')) el.classList.add('is-visible');
+      });
+      // disable the reveal animation entirely when the config switch is off
+      if (!revealOn) document.documentElement.setAttribute('data-no-reveal', '1');
+
+      // Scroll-focus: cards near the viewport centre grow + glow, edges shrink
+      // out. Reads the CURRENT focus elements each run so it survives swaps.
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (focusOn) {
+        __rcInitMotion.focusEls = Array.prototype.slice.call(document.querySelectorAll('.rc-focus'));
+      } else {
+        __rcInitMotion.focusEls = [];
+      }
+      if (focusOn && __rcInitMotion.focusEls.length && 'IntersectionObserver' in window && !reduced) {
+        if (!__rcInitMotion.bound) {
+          __rcInitMotion.bound = true;
+          __rcInitMotion.vh = window.innerHeight || 800;
+          __rcInitMotion.raf = null;
+          function updateFocus() {
+            var mid = __rcInitMotion.vh * 0.5;
+            var range = Math.max(__rcInitMotion.vh * 0.95, 470);
+            (__rcInitMotion.focusEls || []).forEach(function (el) {
+              var rect = el.getBoundingClientRect();
+              var center = rect.top + rect.height * 0.5;
+              var dist = Math.abs(center - mid);
+              var f = Math.max(0, Math.min(1, 1 - dist / range));
+              // smoothstep easing so transitions between scale states feel seamless
+              var e = f * f * (3 - 2 * f);
+              el.style.setProperty('--fs', (0.9 + e * 0.12).toFixed(3));
+              el.style.setProperty('--fo', (0.82 + e * 0.18).toFixed(3));
+              el.style.setProperty('--fc', e.toFixed(3));
+              if (e > 0.58) el.setAttribute('data-focus', 'center');
+              else el.removeAttribute('data-focus');
+            });
+            __rcInitMotion.raf = null;
+          }
+          function requestFocus() {
+            if (__rcInitMotion.raf === null) __rcInitMotion.raf = requestAnimationFrame(updateFocus);
+          }
+          __rcInitMotion.request = requestFocus;
+          window.addEventListener('scroll', requestFocus, { passive: true });
+          window.addEventListener('resize', function () { __rcInitMotion.vh = window.innerHeight; requestFocus(); }, { passive: true });
+          window.addEventListener('load', requestFocus);
+        }
+        __rcInitMotion.request();
+      }
+    }
+
+    var __rcMotionWatcher = null;
+
+    // Hero metric counters: animate 0 → target once per tile. Re-runs after a
+    // Swup swap (the homepage markup is replaced) but never re-animates a tile
+    // that already finished.
+    function __rcInitMetrics() {
+      var nodes = document.querySelectorAll('[data-rc-count]:not([data-rc-done])');
+      if (!nodes.length) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      Array.prototype.forEach.call(nodes, function (el) {
+        var target = parseFloat(el.getAttribute('data-rc-count'));
+        if (isNaN(target)) { el.removeAttribute('data-rc-count'); return; }
+        el.setAttribute('data-rc-done', '1');
+        var fmt = function (v) { return Math.round(v).toLocaleString(); };
+        if (reduced) { el.textContent = fmt(target); return; }
+        var start = null;
+        var dur = 900;
+        var step = function (ts) {
+          if (start === null) start = ts;
+          var p = Math.min(1, (ts - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(target * eased);
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = fmt(target);
+        };
+        requestAnimationFrame(step);
+      });
+    }
+
+    // Custom theme picker (replaces the native <select>). Persists the choice
+    // under the same localStorage key that the early <head> script restores.
+    function __rcInitThemePickers() {
+      var pickers = document.querySelectorAll('[data-theme-picker]');
+      if (!pickers.length) return;
+      Array.prototype.forEach.call(pickers, function (picker) {
+        if (picker.getAttribute('data-inited')) return;
+        picker.setAttribute('data-inited', '1');
+        var btn = picker.querySelector('.rc-themepicker-btn');
+        var menu = picker.querySelector('.rc-themepicker-menu');
+        var label = picker.querySelector('[data-theme-label]');
+        var items = picker.querySelectorAll('[data-theme-value]');
+        if (!btn || !menu) return;
+
+        function sync() {
+          var cur = document.documentElement.getAttribute('data-theme') || 'light';
+          Array.prototype.forEach.call(items, function (it) {
+            var on = it.getAttribute('data-theme-value') === cur;
+            it.classList.toggle('is-active', on);
+            it.setAttribute('aria-selected', on ? 'true' : 'false');
+            if (on && label) label.textContent = it.getAttribute('data-theme-name');
+          });
+        }
+        function close() {
+          menu.hidden = true;
+          btn.setAttribute('aria-expanded', 'false');
+          picker.classList.remove('is-open');
+        }
+        function open() {
+          menu.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+          picker.classList.add('is-open');
+          sync();
+          var active = menu.querySelector('.is-active');
+          if (active && active.scrollIntoView) active.scrollIntoView({ block: 'nearest' });
+        }
+
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (menu.hidden) open(); else close();
+        });
+        Array.prototype.forEach.call(items, function (it) {
+          it.addEventListener('click', function () {
+            var value = it.getAttribute('data-theme-value');
+            document.documentElement.setAttribute('data-theme', value);
+            try { localStorage.setItem('theme', value); } catch (e) {}
+            sync();
+            close();
+          });
+        });
+        document.addEventListener('click', function (e) {
+          if (!picker.contains(e.target)) close();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') close();
+        });
+        sync();
+      });
+    }
+
+    // Single re-init entry point: first load, Swup swaps, and Swup's own hooks
+    // all call this. Exposed on window because the Swup bootstrap script is
+    // defined later in the document.
+    function __rcInitAll() {
+      __rcInitMotion();
+      __rcSetActive();
+      __rcInitToc();
+      __rcInitViews();
+      __rcInitTagCloud();
+      __rcInitFilters();
+      __rcInitExpand();
+      __rcInitBadges();
+      __rcInitMetrics();
+    }
+    window.__rcInitAll = __rcInitAll;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      __rcInitAll();
+      __rcInitThemePickers();
+
+      // Reading-progress line + cursor spotlight (decorative, one-time wiring).
+      (function () {
+        var bar = document.getElementById('rc-progress-bar');
+        if (bar) {
+          var pending = false;
+          var update = function () {
+            pending = false;
+            var doc = document.documentElement;
+            var max = (doc.scrollHeight - window.innerHeight) || 1;
+            var p = Math.min(1, Math.max(0, window.scrollY / max));
+            bar.style.transform = 'scaleX(' + p + ')';
+          };
+          window.addEventListener('scroll', function () {
+            if (pending) return;
+            pending = true;
+            requestAnimationFrame(update);
+          }, { passive: true });
+          window.addEventListener('resize', update);
+          update();
+        }
+        var spot = document.querySelector('.rc-spotlight');
+        if (spot && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          var queued = false, mx = 0, my = 0;
+          window.addEventListener('pointermove', function (e) {
+            mx = e.clientX; my = e.clientY;
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(function () {
+              queued = false;
+              spot.style.setProperty('--rc-mx', mx + 'px');
+              spot.style.setProperty('--rc-my', my + 'px');
+            });
+          }, { passive: true });
+        }
+      })();
+
+      // On mobile, the drawer is a DaisyUI checkbox. Swup swaps only #swup and
+      // never reloads the page, so after clicking a menu link the checkbox would
+      // stay checked and the drawer would remain open over the new view. Uncheck
+      // it whenever a menu link (anywhere in the mobile drawer) is activated.
+      (function () {
+        var toggle = document.getElementById('my-drawer');
+        if (!toggle) return;
+        Array.prototype.forEach.call(document.querySelectorAll('.drawer a.rc-sidebar-link'), function (link) {
+          if (link.getAttribute('data-dr-inited')) return;
+          link.setAttribute('data-dr-inited', '1');
+          link.addEventListener('click', function () { toggle.checked = false; });
+        });
+      })();
+
+      // Re-run the per-page init after ANY content swap. Swup replaces the
+      // container node itself, so watching #swup alone is not reliable — watch
+      // the body but ignore the chrome that mutates every second (clock /
+      // weather) and any MathJax output. Swup's own hooks are a second,
+      // independent trigger, so a page can never stay invisible.
+      if (document.body && 'MutationObserver' in window && !__rcMotionWatcher) {
+        var mTimer = null;
+        var mathCooldown = 0;
+        __rcMotionWatcher = new MutationObserver(function (records) {
+          if (Date.now() < mathCooldown) return;
+          var relevant = false;
+          for (var i = 0; i < records.length; i++) {
+            var rec = records[i];
+            var t = rec.target;
+            // per-second clock/weather, decorative layers, MathJax output
+            if (t && t.nodeType === 1 && t.closest &&
+                t.closest('.rc-nav, .rc-progress, .rc-cloud, .rc-spotlight, mjx-container, mjx-assistive-mml, .MathJax')) {
+              continue;
+            }
+            var touched = [].concat(
+              Array.prototype.slice.call(rec.addedNodes || []),
+              Array.prototype.slice.call(rec.removedNodes || [])
+            );
+            var mathOnly = touched.length > 0;
+            for (var j = 0; j < touched.length; j++) {
+              var n = touched[j];
+              if (!(n.nodeType === 1 && n.matches && n.matches('mjx-container, mjx-assistive-mml, .MathJax'))) {
+                mathOnly = false;
+              }
+            }
+            if (mathOnly) continue;
+            relevant = true;
+          }
+          if (!relevant) return;
+          if (mTimer) clearTimeout(mTimer);
+          mTimer = window.setTimeout(function () {
+            __rcInitAll();
+            // Swallow the mutations typesetting itself produces (never call
+            // MathJax.typesetPromise() here — the clock would retrigger it).
+            mathCooldown = Date.now() + 900;
+            if (window.__rcProcessPost) { try { window.__rcProcessPost(); } catch (e) {} }
+          }, 60);
+        });
+        __rcMotionWatcher.observe(document.body, { childList: true, subtree: true });
+      }
+    });
+  </script>
+
+  <!-- Navbar info widget: live clock + weather (auto or custom city) -->
+  <script>
+    (function () {
+      if (!document.querySelector('.rc-nav-widget')) return;
+      var icons = document.querySelectorAll('.rc-w-icon');
+      var temps = document.querySelectorAll('.rc-w-temp');
+      var cities = document.querySelectorAll('.rc-w-city');
+      if (!icons.length) return;
+
+      function setWeather(i, t, c) {
+        icons.forEach(function (el) { el.textContent = i; });
+        temps.forEach(function (el) { el.textContent = t; });
+        cities.forEach(function (el) { el.textContent = c || ''; });
+      }
+      function weatherIcon(code) {
+        var m = { 0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',66:'🌧',67:'🌧',71:'🌨',73:'🌨',75:'❄️',77:'❄️',80:'🌦',81:'🌧',82:'⛈',85:'🌨',86:'🌨',95:'⛈',96:'⛈',99:'⛈' };
+        return m[code] || '🌤';
+      }
+
+      // ---- live clock (computer time), all instances ----
+      var timeEls = document.querySelectorAll('.rc-time');
+      var dateEls = document.querySelectorAll('.rc-date');
+      function tick() {
+        var d = new Date();
+        var t = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        var dt = d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+        timeEls.forEach(function (el) { el.textContent = t; });
+        dateEls.forEach(function (el) { el.textContent = dt; });
+      }
+      tick();
+      setInterval(tick, 15000);
+
+      // ---- weather by lat/lon ----
+      function fetchWeather(lat, lon, name) {
+        return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat +
+          '&longitude=' + lon + '&current_weather=true&timezone=auto')
+          .then(function (r) { return r.json(); })
+          .then(function (w) {
+            if (w.current_weather) setWeather(weatherIcon(w.current_weather.weathercode), Math.round(w.current_weather.temperature) + '°C', name);
+          });
+      }
+      // ---- geocode + set a custom city (persisted) ----
+      function setCustomCity(name) {
+        return fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(name) +
+          '&count=1&language=en&format=json')
+          .then(function (r) { return r.json(); })
+          .then(function (g) {
+            var res = g.results && g.results[0];
+            if (!res) throw new Error('not found');
+            var label = res.name + (res.country ? ', ' + res.country : '');
+            return fetchWeather(res.latitude, res.longitude, label).then(function () {
+              try { localStorage.setItem('rcWeather', JSON.stringify({ name: label, lat: res.latitude, lon: res.longitude })); } catch (e) {}
+            });
+          });
+      }
+      // ---- auto-detect via geolocation ----
+      function autoDetect() {
+        if (!('geolocation' in navigator)) { setWeather('🌤', '--°C', ''); return; }
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          var lat = pos.coords.latitude, lon = pos.coords.longitude;
+          fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + lat +
+            '&longitude=' + lon + '&localityLanguage=en')
+            .then(function (r) { return r.json(); })
+            .then(function (geo) {
+              var cname = geo.city || geo.locality || geo.principalSubdivision || '';
+              return fetchWeather(lat, lon, cname);
+            })
+            .catch(function () { return fetchWeather(lat, lon, ''); });
+        }, function () { setWeather('🌤', '--°C', ''); }, { timeout: 8000, maximumAge: 600000 });
+      }
+
+      // ---- init: restore saved city, else auto-detect ----
+      var saved = null;
+      try { saved = localStorage.getItem('rcWeather'); } catch (e) {}
+      if (saved) {
+        try {
+          var s = JSON.parse(saved);
+          fetchWeather(s.lat, s.lon, s.name);
+        } catch (e) { autoDetect(); }
+      } else {
+        autoDetect();
+      }
+
+      // ---- city picker popover (per instance) ----
+      document.querySelectorAll('.rc-weather-wrap').forEach(function (wrap) {
+        var btn = wrap.querySelector('.rc-weather');
+        var pop = wrap.querySelector('.rc-widget-pop');
+        var input = wrap.querySelector('.rc-city-input');
+        var go = wrap.querySelector('.rc-city-go');
+        var auto = wrap.querySelector('.rc-city-auto');
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          pop.hidden = !pop.hidden;
+          if (!pop.hidden) { input.value = ''; input.placeholder = 'City (e.g. Berlin)'; input.focus(); }
+        });
+        pop.addEventListener('click', function (e) { e.stopPropagation(); });
+        go.addEventListener('click', function () {
+          var v = input.value.trim();
+          if (!v) return;
+          setCustomCity(v)
+            .then(function () { pop.hidden = true; })
+            .catch(function () { input.placeholder = 'City not found'; input.select(); });
+        });
+        auto.addEventListener('click', function () {
+          try { localStorage.removeItem('rcWeather'); } catch (e) {}
+          autoDetect();
+          pop.hidden = true;
+        });
+        input.addEventListener('keydown', function (e) { if (e.key === 'Enter') go.click(); });
+        document.addEventListener('click', function (e) {
+          if (!wrap.contains(e.target)) pop.hidden = true;
+        });
+      });
+    })();
+  </script>
+
+  <!-- Cookie consent -->
+  <script>
+    (function () {
+      var el = document.getElementById('rcCookie');
+      if (!el) return;
+      var KEY = 'rcCookieConsent';
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+      if (saved) return;
+      el.hidden = false;
+      var close = function (v) {
+        try { localStorage.setItem(KEY, v); } catch (e) {}
+        el.hidden = true;
+      };
+      var ok = document.getElementById('rcCookieAccept');
+      var no = document.getElementById('rcCookieReject');
+      if (ok) ok.addEventListener('click', function () { close('accepted'); });
+      if (no) no.addEventListener('click', function () { close('rejected'); });
+    })();
+  </script>
+
+  <!-- Swup: SPA-style partial navigation — swap only #swup so the fixed
+       sidebar / navbar never re-render. Falls back to normal full loads. -->
+  <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof Swup === 'undefined' || !document.getElementById('swup')) return;
+      try {
+        var swup = new Swup({
+          containers: ['#swup'],
+          cache: false,
+          animateHistoryBrowsing: false,
+          linkSelector: 'a[href]:not([data-no-swup]):not([target="_blank"]):not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([download])'
+        });
+        // Re-init the swapped page. Swup 4 exposes hook callbacks; `on()` is the
+        // legacy API. Both are wired so a navigation can never leave the new
+        // content invisible (reveal animations start from opacity 0).
+        var rcSwapTimer = null;
+        function rcAfterSwap() {
+          if (rcSwapTimer) clearTimeout(rcSwapTimer);
+          rcSwapTimer = window.setTimeout(function () {
+            if (window.__rcInitAll) window.__rcInitAll();
+            if (window.__rcProcessPost) { try { window.__rcProcessPost(); } catch (e) {} }
+            if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
+              try { window.MathJax.typesetPromise(); } catch (e) {}
+            }
+          }, 50);
+        }
+        if (swup.hooks && typeof swup.hooks.on === 'function') {
+          swup.hooks.on('content:replace', rcAfterSwap);
+          swup.hooks.on('page:view', rcAfterSwap);
+        }
+        if (typeof swup.on === 'function') {
+          swup.on('content:replace', rcAfterSwap);
+          swup.on('page:view', function () {
+            rcAfterSwap();
+            window.__rcSetActive && window.__rcSetActive();
+          });
+        }
+      } catch (e) { /* if Swup fails, normal navigation still works */ }
+    });
+  </script>
+
+  <!-- Global theme config (code collapse, …). Defined OUTSIDE the #swup container
+       so it survives a Swup navigation — the per-page inline <script> inside a
+       Swup container is NOT re-executed, which had silently disabled code folding. -->
+  <script>
+    window.themeConfig = {
+      code_collapse: {
+        enabled: true,
+        lines: 5
+      },
+      motion: {
+        background_animation: {
+          enabled: true,
+          opacity: 0.12,
+          count: 30,
+          speed: 1,
+          size: 20,
+          icons: ["⚛","⚗","⚙","✚","✦","◆","◉","◈","✳","∑","π","∞","∆","∴","λ","Ω","⊕","⊳","▣","✽","⟐","⁂"]
+        },
+        scroll_focus: {
+          enabled: true
+        },
+        reveal: {
+          enabled: true
+        }
+      },
+      features: {
+        citation_badges: true,
+        tag_cloud: true,
+        view_toggle: true,
+        post_toc: true
+      }
+    };
+  </script>
+
+  <!-- Altmetric + Dimensions citation badges. Loaded globally (when enabled) so
+       they are available on any page; __rcInitBadges() re-scans after a Swup
+       swap so newly-arrived publication cards render their badges. -->
+  
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://integration-dimensions-badge.digital-science.com/static/com/badge.js" charset="utf-8"></script>
+  
+
+  <!-- Ambient background animation (falling science glyphs); self-gates on config. -->
+  <script src="/js/background.js"></script>
+
+  <!-- Loaded globally so the post content pipeline (math/code/tables) can be
+       re-run after a Swup navigation; post.js guards itself on non-post pages. -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script src="/js/post.js"></script>
+
+</body>
+</html>

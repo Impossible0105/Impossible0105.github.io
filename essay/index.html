@@ -697,13 +697,80 @@
   <!-- Tag cloud -->
   
   
+  <div class="rc-tagcloud">
+    <div class="flex items-center justify-between mb-3">
+      <div class="rc-filter-label">Filter by topic</div>
+      <button type="button" class="rc-tagcloud-clear" data-tag-clear hidden>Clear selection</button>
+    </div>
+    <div class="flex flex-wrap items-center gap-2" data-tagcloud>
+      
+        <button type="button" class="rc-tagcloud-item" data-tag="软件推荐" style="--rc-tc: 1.5; font-weight: 700">
+          #软件推荐 <span class="rc-tagcloud-count">1</span>
+        </button>
+      
+        <button type="button" class="rc-tagcloud-item" data-tag="资源库" style="--rc-tc: 1.5; font-weight: 700">
+          #资源库 <span class="rc-tagcloud-count">1</span>
+        </button>
+      
+    </div>
+  </div>
+  
 
   <div class="text-sm rc-muted mt-4 mb-10">
-    <span id="resultsCount" data-filter-count>Showing all 2 notes</span>
+    <span id="resultsCount" data-filter-count>Showing all 3 notes</span>
   </div>
 
   <!-- Notes grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 rc-notes" id="notesContainer" data-filter-list data-view data-view-key="rc-view-notes">
+    
+      <div class="note-item rc-reveal" data-filter-item
+           data-category=""
+           data-year="2026"
+           data-title="edesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注"
+           data-text=""
+           data-tags="资源库,软件推荐">
+        <article class="rc-card rc-focus flex flex-col h-full">
+          <div class="rc-card-body flex flex-col h-full">
+            <div class="mb-4 rc-note-head">
+              <div class="flex items-center justify-between mb-2">
+                <time class="text-xs rc-muted font-medium">Nov 21, 2026</time>
+                
+              </div>
+              <h2 class="text-lg font-semibold leading-tight">
+                <a href="/2026/11/21/eDesktop-%E6%A1%8C%E9%9D%A2%E6%95%B4%E7%90%86%E4%B8%8E%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="rc-stretched hover:text-[color-mix(in_oklab,var(--rc-accent)_80%,transparent)] transition-colors duration-200 no-underline">
+                  eDesktop：桌面越堆越乱？让这只小猫帮你整理，顺便管起待办和专注
+                </a>
+              </h2>
+            </div>
+
+            
+              <div class="flex-1"></div>
+            
+
+            <div class="flex items-center justify-between mt-5 rc-note-foot">
+              
+                <div class="flex flex-wrap gap-1.5">
+                  
+                    <span class="rc-tag">资源库</span>
+                  
+                    <span class="rc-tag">软件推荐</span>
+                  
+                  
+                </div>
+              
+              <a href="/2026/11/21/eDesktop-%E6%A1%8C%E9%9D%A2%E6%95%B4%E7%90%86%E4%B8%8E%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="rc-btn-link" aria-label="Read more">
+                Read
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+            
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
     
       <div class="note-item rc-reveal" data-filter-item
            data-category=""
